@@ -5,7 +5,7 @@ import { PiBuildingOfficeDuotone } from "react-icons/pi";
 import { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
-// import useAxiosPublic from '../Hooks/useAxiosPublic';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
 import toast from 'react-hot-toast';
 
 
@@ -17,7 +17,7 @@ const Signup = () => {
   const {CreateUserEmailPassword,SigninWithGoogle} = useContext(AuthContext); 
 
   const navigate = useNavigate();
-//   const axiosPublic = useAxiosPublic();
+   const axiosPublic = useAxiosPublic();
 
 
   const handleGoogleSignUp= ()=>{
@@ -26,14 +26,18 @@ const Signup = () => {
         const Loggeduser = result.user;
             console.log(Loggeduser)
 
-            // const user ={
-            //     name: result.user?.displayName,
-            //     email: result.user?.email
-            // }
-            // axiosPublic.post('/users',user)
+            const user ={
+                name: result.user?.displayName,
+                email: result.user?.email,
+                type: "user",
+
+            }
+
+
+            axiosPublic.post('/users',user)
             .then((result) => {
                 if(result.insertedId>0){
-                    notify_Signup   
+                    notify_Signup() 
                 }
                 navigate('/',{replace: true})
             })
@@ -50,14 +54,16 @@ const Signup = () => {
     .then((result) => {
         const Loggeduser = result.user;
             console.log(Loggeduser)
-            // const user = {
-            //     name: data.name,
-            //     email: data.email
-            // }
-            // axiosPublic.post('/users',user)
+            const user = {
+                name: data.name,
+                email: data.email,
+                contact: data.contact,
+                type: "user",
+              }
+            axiosPublic.post('/users',user)
             .then(result => {
                 if(result.data.insertedId) {
-                    notify_Signup
+                    notify_Signup()
                     navigate('/',{replace: true})
                 }
             })
@@ -113,7 +119,7 @@ const Signup = () => {
                       {errors.email && <span>This field is required</span>}
                     </div>
                     <div>
-                        
+
                     <div className="relative before:absolute before:bottom-0 before:h-0.5 before:left-0 before:origin-right focus-within:before:origin-left before:right-0 before:scale-x-0 before:m-auto before:bg-sky-400 focus-within:before:!scale-x-100 focus-within:invalid:before:bg-red-400 before:transition before:duration-300">
                       <input
                         name="email"
