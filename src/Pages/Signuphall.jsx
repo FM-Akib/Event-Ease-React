@@ -1,17 +1,21 @@
-import { useContext } from 'react';
+
 import { useForm } from 'react-hook-form';
-import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
+import { Link, useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import toast from 'react-hot-toast';
+import { FaRegCircleUser } from "react-icons/fa6";
 
-const notify_Signuphall = () => toast.success('Signup Successful!')
+
+const notify_Signup = () => toast.success('Signup Successful!')
+ const image_hosting_key= import.meta.env.VITE_apiKey_Image;
+ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 
 const Signuphall = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-
+  const [loading,setLoading] = useState(false);
 
   const {CreateUserEmailPassword,SigninWithGoogle} = useContext(AuthContext); 
 
@@ -24,30 +28,86 @@ const Signuphall = () => {
     .then((result) => {
         const Loggeduser = result.user;
             console.log(Loggeduser)
+            setLoading(true);
 
             const user ={
                 name: result.user?.displayName,
                 email: result.user?.email,
+                image: result.user?.photoURL,
                 type: "hall",
             }
 
+            const hall={
+                hallName: result.user?.displayName,
+                email: result.user?.email,
+                images: [result.user?.photoURL],
+                guestCapacity: 0,
+                tableBatch: 0,
+                areas: 0,
+                parkingAreas: 0,
+                video:'',
+                location:'',
+                city: "",
+                area: "",
+                type: "",
+                shift: "",
+                facilities: [],
+                price: {},
+                bookedDates:[],
+                description:'',
+                history:'',
+                floor: '',
+                dedicatedBuilding:'',
+                food:'',
+                items:[],
+                cost: '',
+                contact:'',
+                website:'',
+            }
 
+            //insert in halls Collection
+            axiosPublic.post('/halls',hall)
+            .then((result) => {
+                if(result.insertedId>0){
+                    // notify_Signup() 
+                    // navigate('/',{replace: true})
+                }
+               
+             })
+
+
+            //insert in user collection
             axiosPublic.post('/users',user)
             .then((result) => {
                 if(result.insertedId>0){
-                    notify_Signuphall() 
+                    setLoading(false);
+                    notify_Signup() 
+                    navigate('/',{replace: true})
                 }
-                navigate('/',{replace: true})
-            })
+               
+             })
             
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+            })
+
+
+        .catch((error) => {
+            console.log(error.message);
+        });
   }
 
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    setLoading(true);
+
+
+    const imageFile = {image: data.image[0]}
+    const res = await axiosPublic.post(image_hosting_api,imageFile,{
+        headers: {
+            'content-type': 'multipart/form-data',
+        }
+    })
+    if(res.data.success){
+
     CreateUserEmailPassword(data.email,data.password)
     .then((result) => {
         const Loggeduser = result.user;
@@ -55,13 +115,57 @@ const Signuphall = () => {
             const user = {
                 name: data.name,
                 email: data.email,
+                image: res.data.data.display_url,
                 contact: data.contact,
                 type: "hall",
               }
+
+           
+              const hall={
+                hallName: data.name,
+                email: data.email,
+                images: [res.data.data.display_url],
+                guestCapacity: 0,
+                tableBatch: 0,
+                areas: 0,
+                parkingAreas: 0,
+                video:'',
+                location:'',
+                city: "",
+                area: "",
+                type: "",
+                shift: "",
+                facilities: [],
+                price: {},
+                bookedDates:[],
+                description:'',
+                history:'',
+                floor: '',
+                dedicatedBuilding:'',
+                food:'',
+                items:[],
+                cost: '',
+                contact:data.contact,
+                website:'',
+            }
+
+            //insert in halls Collection
+            axiosPublic.post('/halls',hall)
+            .then((result) => {
+                if(result.insertedId>0){
+                    // notify_Signup() 
+                    // navigate('/',{replace: true})
+                }
+               
+             })
+
+
+            //insert in user collection
             axiosPublic.post('/users',user)
             .then(result => {
                 if(result.data.insertedId) {
-                    notify_Signuphall()
+                    setLoading(false);
+                    notify_Signup()
                     navigate('/',{replace: true})
                 }
             })
@@ -70,99 +174,138 @@ const Signuphall = () => {
       .catch((error) => {
         console.log(error.message);
       });
+    }
 }
 
 
+
   return (
-    <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
-      <div className="bg-[url('https://i.ibb.co/c6MmyWF/abby-savage.jpg')] bg-cover bg-center h-screen w-full">
-        <div className="m-auto xl:container px-12 sm:px-0 mx-auto">
-          <div className="mx-auto h-full sm:w-3/12">
-            <div className="m-auto py-12">
-              <div className="mt-12 rounded-3xl border bg-gray-50/85 -mx-6 sm:-mx-10 p-8 sm:p-10">
-                {/* <h3 className="text-2xl font-semibold text-gray-700">List your hall here...</h3> */}
 
-                
-            <section className="w-full max-w-5xl mx-auto px-5 lg:px-0">
-            <div className="bg-gray-800 p-6 md:p-10 rounded-2xl mx-auto flex flex-col gap-y-5 justify-center items-center relative">
-                <svg className="absolute right-0 top-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" width="227" height="223" viewBox="0 0 227 223" fill="none">
-                <path opacity="0.21" d="M163.766 -28.3772C163.766 -31.8935 161.662 -35.0699 158.422 -36.4473C155.181 -37.8247 151.429 -37.1368 148.891 -34.6996L117.649 -4.71041C71.1338 39.9411 31.8296 91.5182 1.13522 148.185C0.412538 149.459 0 150.932 0 152.501C0 157.345 3.9335 161.271 8.78571 161.271H84.5186V287.378C84.5186 290.852 86.5716 293.998 89.754 295.401C92.9365 296.805 96.6487 296.201 99.2207 293.862L113.199 281.15C162.13 236.652 203.656 184.662 236.217 127.133L244.863 111.856C246.4 109.141 246.377 105.814 244.802 103.121C243.228 100.427 240.339 98.7703 237.214 98.7703H163.766V-28.3772Z" fill="#F2F9FB" fillOpacity="0.4" />
-                </svg>
-                <h3 className="text-2xl md:text-3xl lg:text-3xl font-bold text-white text-center">Listing <span className=" font-semibold text-yellow-200">Your Hall</span></h3>
-            </div>
-            </section>
+    <div className="md:grid grid-cols-10 p-2 md:p-14 md:pt-2 bg-[url(https://i.ibb.co/tc5HwLj/pattern.jpg)] bg-cover relative ">
 
 
-                <div className="mt-5 flex flex-wrap">
-                  <button onClick={handleGoogleSignUp} className="w-full h-11 rounded-xl border border-gray-300/75 bg-white px-6 transition active:bg-gray-50">
-                    <div className="w-full mx-auto flex items-center justify-center space-x-4">
-                      <span className="w-max text-sm font-semibold tracking-wide text-cyan-700 flex items-center justify-center">
-                        <FcGoogle className="mr-1 text-2xl" /> Sign up with Google
-                      </span>
-                    </div>
-                  </button>
-                
-                </div>
-
-                <form className="mt-10 space-y-8" onSubmit={handleSubmit(onSubmit)}>
-                  <div>
-                    <div className="relative before:absolute before:bottom-0 before:h-0.5 before:left-0 before:origin-right focus-within:before:origin-left before:right-0 before:scale-x-0 before:m-auto before:bg-sky-400 focus-within:before:!scale-x-100 focus-within:invalid:before:bg-red-400 before:transition before:duration-300">
-                      <input
-                        name="email"
-                        {...register("email", { required: true })}
-                        type="email"
-                        required
-                        placeholder="Your email or user name"
-                        className="w-full bg-transparent pb-3 border-b border-gray-300 outline-none invalid:border-red-400 transition"
-                      />
-                      {errors.email && <span>This field is required</span>}
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col items-end">
-                    <div className="w-full relative before:absolute before:bottom-0 before:h-0.5 before:left-0 before:origin-right focus-within:before:origin-left before:right-0 before:scale-x-0 before:m-auto before:bg-sky-400 focus-within:before:!scale-x-100 focus-within:invalid:before:bg-red-400 before:transition before:duration-300">
-                      <input
-                        {...register("password", { required: true })}
-                        name="password"
-                        type="password"
-                        required
-                        placeholder="Your Password"
-                        className="w-full bg-transparent pb-3 border-b border-gray-300 outline-none invalid:border-red-400 transition"
-                      />
-                      {errors.password && <span>This field is required</span>}
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="relative before:absolute before:bottom-0 before:h-0.5 before:left-0 before:origin-right focus-within:before:origin-left before:right-0 before:scale-x-0 before:m-auto before:bg-sky-400 focus-within:before:!scale-x-100 focus-within:invalid:before:bg-red-400 before:transition before:duration-300">
-                      <input
-                        name="contact"
-                        {...register("contact", { required: true })}
-                        type="text"
-                        placeholder="Your contact number"
-                        className="w-full bg-transparent pb-3 border-b border-gray-300 outline-none invalid:border-red-400 transition"
-                      />
-                      {errors.contact && <span>This field is required</span>}
-                    </div>
-                  </div>
-
-                  <div>
-                    <button className="w-full rounded-xl bg-orange-500 h-11 flex items-center justify-center px-6 py-3 transition hover:bg-orange-600 focus:bg-orange-600 active:bg-orange-800">
-                      <span className="text-base font-semibold text-white">Sign up</span>
-                    </button>
-                    <Link to="/login">
-                      <button type="reset" className="-ml-3 w-max p-3">
-                        <span className="text-sm tracking-wide text-sky-600">Already have an account? Login</span>
-                      </button>
-                    </Link>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+ <div className={`${loading? 'block':'hidden'}   absolute bg-white bg-opacity-60 z-10 h-full w-full flex items-center justify-center `}>
+    <div className="flex items-center">
+      <span className="text-3xl mr-4">Loading</span>
+      <svg className="animate-spin h-8 w-8 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none"
+        viewBox="0 0 24 24">
+        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+        <path className="opacity-75" fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+        </path>
+      </svg>
     </div>
+  </div>
+
+
+     <div className="md:rounded-r-md    col-span-5 bg-white/50 p-10 flex flex-col items-center justify-start">
+     <div className="">
+     <h1 className="text-2xl text-center font-extrabold tracking-tight text-slate-900 sm:text-3xl">Event <span className="text-orange-400"> Ease</span></h1>
+     <p className="mt-2 mb-10 text-sm text-center font-semibold text-gray-400">
+     Register your hall
+     </p>
+     </div> 
+     <img src="https://i.ibb.co/c6MmyWF/abby-savage.jpg" className="rounded-lg" alt="" />  
+     </div>
+
+
+
+     <div className="md:border-r-0 md:rounded-l-md col-span-5 bg-white/50">
+
+            <div className=" w-full max-w-md mx-auto p-4 md:p-8 space-y-3 rounded-xl bg-white/50 text-gray-800 ">
+            <h1 className="text-2xl font-bold text-center pb-5">Register</h1>
+
+
+            <form onSubmit={handleSubmit(onSubmit)} noValidate="" action="" className="space-y-6 ">
+           
+            <div className="space-y-1 text-sm">
+                <label htmlFor="image" className="block text-gray-600">Profile Photo</label>
+                <input {...register("image")} type="file" name="image" id="image"  className="w-full px-4 py-3 rounded-md border-gray-300  text-gray-800 focus:border-emerald-600" />
+            </div>
+
+
+            <div className="space-y-1  relative before:absolute before:bottom-0 before:h-0.5 before:left-0 before:origin-right focus-within:before:origin-left before:right-0 before:scale-x-0 before:m-auto before:bg-orange-400 focus-within:before:!scale-x-100 focus-within:invalid:before:bg-red-400 before:transition before:duration-300">
+                   <input
+                     name="name"
+                    {...register("name", { required: true })}
+                    type="text"
+                    required
+                    placeholder="Your hall/restaurent name"
+                    className="w-full bg-transparent pb-2 border-b border-gray-300 outline-none invalid:border-red-400 transition"
+                  />
+                  {errors.email && <span>This field is required</span>}
+            </div>
+
+            <div className=" space-y-1  relative before:absolute before:bottom-0 before:h-0.5 before:left-0 before:origin-right focus-within:before:origin-left before:right-0 before:scale-x-0 before:m-auto before:bg-orange-400 focus-within:before:!scale-x-100 focus-within:invalid:before:bg-red-400 before:transition before:duration-300">
+              <input
+                name="contact"
+                {...register("contact", { required: true })}
+                type="text"
+                required
+                placeholder="Your contact number"
+                className="w-full bg-transparent pb-2 border-b border-gray-300 outline-none invalid:border-red-400 transition"
+              />
+              {errors.contact && <span>This field is required</span>}
+            </div>
+
+
+            <div className=" space-y-1  relative before:absolute before:bottom-0 before:h-0.5 before:left-0 before:origin-right focus-within:before:origin-left before:right-0 before:scale-x-0 before:m-auto before:bg-orange-400 focus-within:before:!scale-x-100 focus-within:invalid:before:bg-red-400 before:transition before:duration-300">
+              <input
+                name="email"
+                {...register("email", { required: true })}
+                type="email"
+                required
+                placeholder="Your email or user name"
+                className="w-full bg-transparent pb-2 border-b border-gray-300 outline-none invalid:border-red-400 transition"
+              />
+              {errors.email && <span>This field is required</span>}
+            </div>
+              
+            <div className=" space-y-1  w-full relative before:absolute before:bottom-0 before:h-0.5 before:left-0 before:origin-right focus-within:before:origin-left before:right-0 before:scale-x-0 before:m-auto before:bg-orange-400 focus-within:before:!scale-x-100 focus-within:invalid:before:bg-red-400 before:transition before:duration-300">
+              <input
+                {...register("password", { required: true })}
+                name="password"
+                type="password"
+                required
+                placeholder="Your Password"
+                className="w-full bg-transparent pb-2 border-b border-gray-300 outline-none invalid:border-red-400 transition"
+              />
+              {errors.password && <span>This field is required</span>}
+            </div>
+            
+            <button className="block w-full p-3 text-center rounded-sm text-gray-50 bg-orange-500 hover:bg-orange-600">Register</button>
+            </form>
+
+
+
+            <div className="flex items-center pt-4 space-x-1">
+            <div className="flex-1 h-px sm:w-16 bg-gray-200"></div>
+            <p className="px-3 text-sm text-gray-600">Signup another way</p>
+            <div className="flex-1 h-px sm:w-16 bg-gray-200"></div>
+            </div>
+            <div className="flex justify-center space-x-4">
+            
+            <button onClick={handleGoogleSignUp} aria-label="Log in with Google" className=" flex-1 px-3 py-1 rounded-lg border-2 flex items-center justify-center">
+            <svg width="30px" height="30px" viewBox="0 0 32 32" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"><path d="M23.75,16A7.7446,7.7446,0,0,1,8.7177,18.6259L4.2849,22.1721A13.244,13.244,0,0,0,29.25,16" fill="#00ac47"/><path d="M23.75,16a7.7387,7.7387,0,0,1-3.2516,6.2987l4.3824,3.5059A13.2042,13.2042,0,0,0,29.25,16" fill="#4285f4"/><path d="M8.25,16a7.698,7.698,0,0,1,.4677-2.6259L4.2849,9.8279a13.177,13.177,0,0,0,0,12.3442l4.4328-3.5462A7.698,7.698,0,0,1,8.25,16Z" fill="#ffba00"/><polygon fill="#2ab2db" points="8.718 13.374 8.718 13.374 8.718 13.374 8.718 13.374"/><path d="M16,8.25a7.699,7.699,0,0,1,4.558,1.4958l4.06-3.7893A13.2152,13.2152,0,0,0,4.2849,9.8279l4.4328,3.5462A7.756,7.756,0,0,1,16,8.25Z" fill="#ea4435"/><polygon fill="#2ab2db" points="8.718 18.626 8.718 18.626 8.718 18.626 8.718 18.626"/><path d="M29.25,15v1L27,19.5H16.5V14H28.25A1,1,0,0,1,29.25,15Z" fill="#4285f4"/></svg>
+            <p className="text-left ml-4 leading-tight text-sm	">Sign up with google</p>
+            </button>
+            
+            <Link to="/signup" className="flex-1 px-3 py-1 rounded-lg border-2">
+            <button onClick={handleGoogleSignUp} aria-label="" className=" flex items-center justify-center p-1">
+            <FaRegCircleUser className='text-2xl'/>
+            <p className="text-left ml-4 text-sm leading-tight	">Register as a user</p>
+            </button>
+            </Link>
+            </div>
+            <p className="text-md text-center sm:px-6 text-gray-600">Already have an account?
+            <Link rel="noopener noreferrer" to="/login" className="underline text-blue-800 ml-1">Login</Link>
+            </p>
+            </div>
+
+     </div>
+         
+     </div>
+
   );
 };
 

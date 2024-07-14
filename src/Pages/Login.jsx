@@ -49,8 +49,8 @@ const Login = () => {
                     <div className="m-auto xl:container px-12 sm:px-0 mx-auto">
                         <div className="mx-auto h-full sm:w-3/12">
                             <div className="m-auto py-12">
-                                <div className="mt-12 rounded-3xl border bg-gray-50/85 -mx-6 sm:-mx-10 p-8 sm:p-10">
-                                    <h3 className="text-2xl font-semibold text-gray-700">Login to your account</h3>
+                                <div className="mt-12 rounded-3xl border bg-[url(https://i.ibb.co/J2DzSx4/watercolor-paper-texture.jpg)] bg-cover -mx-6 sm:-mx-10 p-8 sm:p-10">
+                                    <h3 className="text-2xl font-semibold text-gray-700 text-center">Login to your account</h3>
                                     <div className="mt-12 flex flex-wrap">
                                         <button onClick={handleGoogleSignin} className="w-full h-11 rounded-xl border border-gray-300/75 bg-white px-6 transition active:bg-gray-50">
                                             <div className="w-full mx-auto flex items-center justify-center space-x-4">
@@ -74,7 +74,7 @@ const Login = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <button className="w-full rounded-xl bg-sky-500 h-11 flex items-center justify-center px-6 py-3 transition hover:bg-sky-600 focus:bg-sky-600 active:bg-sky-800">
+                                            <button className="w-full rounded-md bg-orange-500 h-11 flex items-center justify-center px-6 py-3 transition hover:bg-sky-600 focus:bg-sky-600 active:bg-sky-800">
                                                 <span className="text-base font-semibold text-white">Login</span>
                                             </button>
                                             <Link to="/signup">
