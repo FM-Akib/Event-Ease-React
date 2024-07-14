@@ -9,6 +9,7 @@ import AHallPage from "../Pages/AHallPage";
 import BookHall from "../Pages/BookHall";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
+import Signuphall from "../Pages/Signuphall";
 
 export const router = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
         {
           path:'/signup',
           element: <Signup/>
+        },
+        {
+          path:'/signuphall',
+          element: <Signuphall/>
         }
       ]
     },
