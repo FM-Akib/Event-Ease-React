@@ -114,9 +114,11 @@ const Navbar = () => {
           {
             user ? <>
             
+            <NavLink to="/dashboardHall">
             <div className="h-10 w-10 overflow-hidden rounded-full ring-2 ring-orange-600 cursor-pointer ">
             <img src={userInfo.image} alt=""/>
             </div>
+            </NavLink>
 
             <button
                 onClick={handleLogout}
