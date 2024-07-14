@@ -11,6 +11,7 @@ import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import Signuphall from "../Pages/Signuphall";
 import DashboardHallLayout from "../Layout/DashboardHallLayout";
+import HomeHall from "../Pages/HallDashboard/HomeHall";
 
 export const router = createBrowserRouter([
     {
@@ -57,6 +58,12 @@ export const router = createBrowserRouter([
     },
     {
       path:'/dashboardHall',
-      element: <DashboardHallLayout/>
+      element: <DashboardHallLayout/>,
+      children: [
+        {
+          path:'home',
+          element: <HomeHall/>
+        }
+      ]
     }
   ]);
