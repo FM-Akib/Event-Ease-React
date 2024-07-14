@@ -1,8 +1,24 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import useUserInfo from "../../Hooks/useUserInfo";
 
 const Navbar = () => {
+
+  const { user, logOut } = useContext(AuthContext);
+  const { userInfo } = useUserInfo();
+  const nagate = useNavigate()
+
+  const handleLogout = () => {
+       logOut()
+        .then(() => { })
+        .catch(err => console.log(err));
+        nagate('/')
+      }
+
+
   return (
-    <nav className="fixed top-0 z-40 w-full bg-[#FEFCE8]/90">
+    <nav className="fixed top-0 z-40 w-full bg-[#FEFCE8]/90 md:px-20">
       <div className="container m-auto px-2 md:px-12 lg:px-7">
         <div className="flex px-6 md:px-0 z-20 flex-wrap items-center justify-between py-5 gap-6 md:py-5 md:gap-0">
           <input type="checkbox" id="toggleNav" className="peer hidden" />
@@ -93,15 +109,47 @@ const Navbar = () => {
             </div>
           </div>
           <div className="block-endnav w-max flex items-center gap-4">
+           
+           
+          {
+            user ? <>
+            
+            <div className="h-10 w-10 overflow-hidden rounded-full ring-2 ring-orange-600 cursor-pointer ">
+            <img src={userInfo.image} alt=""/>
+            </div>
+
+            <button
+                onClick={handleLogout}
+                type="button"
+                className="hidden sm:block w-full py-3 px-6 text-center rounded-md transition bg-gray-600 hover:bg-cyan-500 active:bg-cyan-600 focus:bg-cyan-800 sm:w-max"
+              >
+                <span className="block text-white text-sm">Logout</span>
+            </button>
+
+            </>: <>
+            
             <NavLink to="/login">
               <button
                 type="button"
-                title="Start buying"
-                className="hidden sm:block w-full py-3 px-6 text-center rounded-md transition bg-gray-900 hover:bg-cyan-500 active:bg-cyan-600 focus:bg-cyan-800 sm:w-max"
+                className="hidden sm:block w-full py-3 px-6 text-center rounded-md transition bg-orange-600 hover:bg-cyan-500 active:bg-cyan-600 focus:bg-cyan-800 sm:w-max"
               >
                 <span className="block text-white text-sm">Login</span>
               </button>
             </NavLink>
+
+            <NavLink to="/signup">
+              <button
+                type="button"
+                className="hidden sm:block w-full py-3 px-6 text-center rounded-md transition bg-emerald-600 hover:bg-cyan-500 active:bg-cyan-600 focus:bg-cyan-800 sm:w-max"
+              >
+                <span className="block text-white text-sm">Signup</span>
+              </button>
+            </NavLink>
+            </>
+          }
+
+
+
 
             <div className="flex items-center md:hidden max-h-10">
               <label
