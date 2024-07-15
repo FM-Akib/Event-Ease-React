@@ -22,7 +22,7 @@ const AHallPage = () => {
 
       
     return (
-        <div className="px-4 py-6 md:px-20 md:py-10">
+      <div className="px-4 py-6 md:px-20 md:py-10">
         <div className="grid md:grid-cols-10 gap-4">
           <div className="md:col-span-7">
             <div className="flex flex-col items-center justify-center">

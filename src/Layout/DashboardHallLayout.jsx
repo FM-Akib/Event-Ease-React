@@ -20,8 +20,10 @@ return (
   </div>
 
 
-  <div className="bg-slate-200 min-h-screen w-full">
+  <div className="bg-[url(https://i.ibb.co/tc5HwLj/pattern.jpg)] bg-cover min-h-screen w-full">
+  <div className="bg-white/80 min-h-full ">
   <Outlet/>
+  </div>
   </div>
 
 
@@ -30,7 +32,7 @@ return (
 
   <div className="drawer-side ">
     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-    <ul className="menu bg-[url(https://i.ibb.co/tc5HwLj/pattern.jpg)] bg-cover pt-24 text-base-content min-h-full w-80 p-4 gap-3">
+    <ul className="menu  pt-24 text-base-content min-h-full w-80 p-4 gap-3">
       {/* Sidebar content here */}
       <AsideDashboard/>
     </ul>
