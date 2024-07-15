@@ -21,7 +21,7 @@ const Facilities = ({ ahall }) => {
             <div className="space-y-1 mt-1 text-center">
               <h3 className="font-semibold text-gray-500">AC</h3>
               <p className="text-md font-semibold">
-                {ahall.facilities.includes('AC') ? (
+                {ahall?.facilities?.includes('AC') ? (
                   <span className="text-emerald-500">Yes</span>
                 ) : (
                   <span className="text-red-500">No</span>
@@ -37,7 +37,7 @@ const Facilities = ({ ahall }) => {
             <div className="space-y-1 mt-1 text-center">
               <h3 className="font-semibold text-gray-500">Catering</h3>
               <p className="text-md font-semibold">
-                {ahall.facilities.includes('Catering') ? (
+                {ahall?.facilities?.includes('Catering') ? (
                   <span className="text-emerald-500">Yes</span>
                 ) : (
                   <span className="text-red-500">No</span>
@@ -53,7 +53,7 @@ const Facilities = ({ ahall }) => {
             <div className="space-y-1 mt-1 text-center">
               <h3 className="font-semibold text-gray-500">CCTV</h3>
               <p className="text-md font-semibold">
-                {ahall.facilities.includes('CCTV') ? (
+                {ahall?.facilities?.includes('CCTV') ? (
                   <span className="text-emerald-500">Yes</span>
                 ) : (
                   <span className="text-red-500">No</span>
@@ -69,7 +69,7 @@ const Facilities = ({ ahall }) => {
             <div className="space-y-1 mt-1 text-center">
               <h3 className="font-semibold text-gray-500">Cooking</h3>
               <p className="text-md font-semibold">
-                {ahall.facilities.includes('Cooking') ? (
+                {ahall?.facilities?.includes('Cooking') ? (
                   <span className="text-emerald-500">Yes</span>
                 ) : (
                   <span className="text-red-500">No</span>
@@ -85,7 +85,7 @@ const Facilities = ({ ahall }) => {
             <div className="space-y-1 mt-1 text-center">
               <h3 className="font-semibold text-gray-500">Generator</h3>
               <p className="text-md font-semibold">
-                {ahall.facilities.includes('Electric Generator') ? (
+                {ahall?.facilities?.includes('Electric Generator') ? (
                   <span className="text-emerald-500">Yes</span>
                 ) : (
                   <span className="text-red-500">No</span>
@@ -101,7 +101,7 @@ const Facilities = ({ ahall }) => {
             <div className="space-y-1 mt-1 text-center">
               <h3 className="font-semibold text-gray-500">Lift</h3>
               <p className="text-md font-semibold">
-                {ahall.facilities.includes('Lift') ? (
+                {ahall?.facilities?.includes('Lift') ? (
                   <span className="text-emerald-500">Yes</span>
                 ) : (
                   <span className="text-red-500">No</span>

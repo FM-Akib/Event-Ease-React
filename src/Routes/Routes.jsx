@@ -12,6 +12,7 @@ import Signup from "../Pages/Signup";
 import Signuphall from "../Pages/Signuphall";
 import DashboardHallLayout from "../Layout/DashboardHallLayout";
 import HomeHall from "../Pages/HallDashboard/HomeHall";
+import EditHallProfile from "../Pages/HallDashboard/EditHallProfile";
 
 export const router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
         {
           path:'home',
           element: <HomeHall/>
+        },
+        {
+          path:'edit',
+          element: <EditHallProfile/>
         }
       ]
     }

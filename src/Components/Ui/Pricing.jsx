@@ -3,9 +3,13 @@ import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 const Pricing = ({ hall }) => {
+  if (!hall || !hall.price) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className="container mx-auto px-6 py-10 md:py-20">
-      <div className="mt-2 grid items-center gap-6  w-full  ">
+      <div className="mt-2 grid items-center gap-6  w-full">
         <div className="group relative row-start-1 md:col-span-2">
           <div
             aria-hidden="true"
@@ -52,23 +56,23 @@ const Pricing = ({ hall }) => {
                 <span className="font-semibold text-primary">
                   <PiCheckCircleDuotone className="text-emerald-500" />
                 </span>
-                <span>Night with Ac - {hall.price.nigthAc}৳</span>
+                <span>Night with Ac - {hall.price.nightAc}৳</span>
               </li>
               <li className="space-x-2 flex items-center">
                 <span className="font-semibold text-primary">
                   <PiCheckCircleDuotone className="text-emerald-500" />
                 </span>
-                <span>Night without Ac - {hall.price.nigthNonAc}৳</span>
+                <span>Night without Ac - {hall.price.nightNonAc}৳</span>
               </li>
             </ul>
 
-          <Link to={`/bookhall/${hall._id}`}>  
-            <button className="relative flex h-11 bg-emerald-700 hover:bg-emerald-600 rounded-md w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95">
-              <span className="relative text-base font-semibold text-white flex items-center">
-                Book Now <IoArrowForwardCircleOutline className="ml-1 text-xl" />
-              </span>
-            </button>
-          </Link>
+            <Link to={`/bookhall/${hall._id}`}>  
+              <button className="relative flex h-11 bg-emerald-700 hover:bg-emerald-600 rounded-md w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95">
+                <span className="relative text-base font-semibold text-white flex items-center">
+                  Book Now <IoArrowForwardCircleOutline className="ml-1 text-xl" />
+                </span>
+              </button>
+            </Link>
           </div>
         </div>
       </div>

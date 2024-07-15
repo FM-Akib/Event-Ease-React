@@ -1,4 +1,4 @@
-"use client";
+
 
 import { useState } from 'react';
 import { RxCrossCircled } from "react-icons/rx";
@@ -13,6 +13,10 @@ const Gallery = ({ images }) => {
   const closeModal = () => {
     setSelectedImage(null);
   };
+
+  if (!images || images.length === 0) {
+    return <p>No images available</p>;
+  }
 
   return (
     <div className="flex flex-col items-center p-4">

@@ -11,7 +11,7 @@ return (
   
     {/* Page content here */}
   
-  <div className=" w-full h-20 flex items-center bg-white border-b-2  border-s-2 px-5">
+  <div className=" w-full h-20 flex items-center bg-white   border-s-2 px-5">
   <label htmlFor="my-drawer-2" className="btn bg-orange-500 drawer-button lg:hidden">
   <FiMenu className="text-xl text-white"/>
   </label>

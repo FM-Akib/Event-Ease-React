@@ -11,14 +11,14 @@ const Catering = ({hall}) => {
                       
         <div className="bg-white px-10 py-3 rounded-md border mt-5">
 
-        <p className="flex items-center"><span className="font-semibold mr-1 text-gray-600 flex items-center"><LuUtensils className='mr-1'/>Food:</span> {hall.food}</p>
+        <p className="flex items-center"><span className="font-semibold mr-1 text-gray-600 flex items-center"><LuUtensils className='mr-1'/>Food:</span> {hall?.food}</p>
         <hr  className="my-2"/>
         {
-            hall.items.map((item, index) => ( <div key={index} className="flex items-center font-semibold text-gray-500"><MdKeyboardDoubleArrowRight className='mr-1' />{item}</div>))
+            hall?.items?.map((item, index) => ( <div key={index} className="flex items-center font-semibold text-gray-500"><MdKeyboardDoubleArrowRight className='mr-1' />{item}</div>))
         }
         <hr  className="my-2"/>
         <p className="text-gray-600 flex items-center"><RxTriangleRight className='mr-1'/>This can be updateable.</p>
-        <p className="text-gray-600 flex items-center"><RxTriangleRight  className='mr-1'/>Cost: {hall.cost} </p>
+        <p className="text-gray-600 flex items-center"><RxTriangleRight  className='mr-1'/>Cost: {hall?.cost} </p>
         </div>
         </div>
     );
