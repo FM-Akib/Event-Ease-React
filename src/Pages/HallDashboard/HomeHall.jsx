@@ -1,51 +1,80 @@
+import useAHall from "../../Hooks/useAHall";
+import { IoLocationOutline } from "react-icons/io5";
+import { RiCommunityLine } from "react-icons/ri";
+import { PiShieldStarLight } from "react-icons/pi";
+import Gallery from "../../Components/Ui/Gallery";
+import Capacity from "../../Components/Ui/Capacity";
+import Facilities from "../../Components/Ui/Facilities";
+import Catering from "../../Components/Ui/Catering";
+import Pricing from "../../Components/Ui/Pricing";
+import Contact from "../../Components/Ui/Contact";
 
 const HomeHall = () => {
+    const {loggedHall:ahall} = useAHall();
+
+    const getYouTubeVideoId = (url) => {
+        const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube.com\/(?:[^/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu.be\/)([a-zA-Z0-9_-]{11})/;
+        const match = url.match(regex);
+        return match ? match[1] : null;
+      };
+      
+      const videoId = getYouTubeVideoId(ahall.video);
     return (
-        <>
-        <div
-  className="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8">
-  <span
-    className="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-yellow-500 to-orange-600"
-  ></span>
+        <div className="px-4 py-6 md:px-20 md:py-10">
+        <div className="grid md:grid-cols-10 gap-4">
+          <div className="md:col-span-7">
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="text-2xl md:text-3xl text-center font-semibold text-gray-800 flex items-center justify-center">
+                <RiCommunityLine className='mr-1' />
+                {ahall.hallName}
+              </h1>
+              <p className="text-gray-600 flex items-center justify-center bg-slate-100 mt-1 px-2 rounded-md">
+                <IoLocationOutline className='mr-1' />
+                {ahall.location}
+              </p>
+            </div>
 
-  <div className="sm:flex sm:justify-between sm:gap-4">
-    <div>
-      <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
-        Building a SaaS product as a software developer
-      </h3>
+            <Gallery images={ahall.images} />
 
-      <p className="mt-1 text-xs font-medium text-gray-600">By John Doe</p>
-    </div>
+            <div className="mt-2 text-gray-700">
+              <p>{ahall.description}</p>
+              <hr className="my-2" />
+              <p>
+                <span className="font-semibold text-gray-600">History:</span> {ahall.history}
+              </p>
+            </div>
 
-    <div className=" sm:block sm:shrink-0">
-      <img
-        alt=""
-        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-        className="size-24 rounded-lg object-cover shadow-sm"
-      />
-    </div>
-  </div>
+            <Capacity ahall={ahall} />
 
-  <div className="mt-4">
-    <p className="text-pretty text-sm text-gray-500">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. At velit illum provident a, ipsa
-      maiores deleniti consectetur nobis et eaque.
-    </p>
-  </div>
+            <div className="my-4 flex flex-col justify-center">
+              <p className="mb-2 flex items-center justify-start font-semibold text-gray-600">
+                <PiShieldStarLight className="mr-1" />
+                Virtual tour of our {ahall.type}.
+              </p>
+              {videoId ? (
+                <iframe
+                  className="w-full aspect-video"
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title="YouTube video player"
+                ></iframe>
+              ) : (
+                <p>Invalid YouTube URL</p>
+              )}
+            </div>
+          </div>
 
-  <dl className="mt-6 flex gap-4 sm:gap-6">
-    <div className="flex flex-col-reverse">
-      <dt className="text-sm font-medium text-gray-600">Published</dt>
-      <dd className="text-xs text-gray-500">31st June, 2021</dd>
-    </div>
-
-    <div className="flex flex-col-reverse">
-      <dt className="text-sm font-medium text-gray-600">Reading time</dt>
-      <dd className="text-xs text-gray-500">3 minute</dd>
-    </div>
-  </dl>
+          {/* Sidebar */}
+          <div className="md:col-span-3">
+            <Facilities ahall={ahall} />
+            <Catering hall={ahall} />
+            <Pricing hall={ahall} />
+            <Contact hall={ahall} />
+          </div>
         </div>
-        </>
+      </div>
     );
 };
 
