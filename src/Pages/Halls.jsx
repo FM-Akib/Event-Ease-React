@@ -3,31 +3,69 @@ import { IoLocationOutline } from "react-icons/io5";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import useAllHalls from "../Hooks/useAllHalls";
-
+import { useForm } from "react-hook-form";
+import filterIcn from '../assets/filter.png'
+import { useState } from "react";
 
 const Halls = () => {
   
-     const {  halls } = useAllHalls();
-
-    // Log the halls data to the console
-      // console.log(halls);
+  const {  halls } = useAllHalls();
+  const [filterHalls,setFilterHalls] =  useState(halls)
   
+  // Form handlers for each form
+  const form1 = useForm();
+  const form2 = useForm();
+  const form3 = useForm();
+
+  const [loading,setLoading]=useState(false)
+  const [inputValue, setInputValue] = useState("");
+  const [inputValue2, setInputValue2] = useState("");
+
+  // Submission handlers for each form
+  const onSubmitForm1 = (data) => {
+    setLoading(true)
+    console.log(data.area)
+    const areaSearch = halls.filter((hall) => hall.area.toLowerCase() === data.area.toLowerCase());
+    setFilterHalls(areaSearch); 
+    setLoading(false)
+
+  };
+
+  const onSubmitForm2 = (data) => {
+    setLoading(true)
+    const citySearch = halls.filter((hall) => hall.city.toLowerCase() === data.city.toLowerCase());
+    setFilterHalls(citySearch);   
+    setLoading(false)
+  };
+
+  const onSubmitForm3 = (data) => {
+    setLoading(true)
+    const typeSearch = halls.filter((hall) => hall.type.toLowerCase() === data.type.toLowerCase());
+    setFilterHalls(typeSearch); 
+    setLoading(false)
+  };
+  const filteredSuggestionsCity = halls.filter((hall) =>
+    hall.city.toLowerCase().includes(inputValue.toLowerCase())
+  );
+  const filteredSuggestionsArea = halls.filter((hall) =>
+    hall.area.toLowerCase().includes(inputValue.toLowerCase())
+  );
 
     return (
      
-    <div className="py-12">
+       <div className="py-12">
         <div className="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
-            <div className="mb-12 space-y-2 text-center">
+         <div className="mb-12 space-y-2 text-center">
             <h2 className="text-3xl font-bold text-gray-800 md:text-4xl ">Find your event hall</h2>
             <p className="text-gray-600  lg:mx-auto lg:w-6/12">
             Virtual Tours of Community Centers
       </p>
-            </div>
+          </div>
 
       
       <section className="mb-5">
       <div className="max-w-6xl  mx-auto px-4 sm:px-6">
-          <div className="relative rounded-md bg-orange-600 py-10 px-8 md:py-16 md:px-12 aos-init">
+          <div className="relative rounded-md bg-orange-500 py-10 px-8 md:py-16 md:px-12 aos-init">
               <div className="absolute right-0 top-0 -ml-40 pointer-events-none" aria-hidden="true">
                   <svg width="238" height="110" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <defs>
@@ -43,18 +81,80 @@ const Halls = () => {
                   </svg>
               </div>
               <div className="relative flex flex-col lg:flex-row justify-between items-center">
-                  <div className="mb-6 lg:mr-16 lg:mb-0 text-center lg:text-left lg:w-1/2">
-                      <h3 className="h3 text-white mb-2">Find your event hall</h3>
-                      <p className="text-white text-lg">Join our newsletter to get top news before anyone else.</p>
+                  <div className="mb-6 lg:mr-16 lg:mb-0 text-center lg:text-left lg:w-1/3">
+                      <h3 className="h3 text-white mb-2 text-xl font-semibold">Find your event hall</h3>
+                      <p className="text-white text-lg">Search by your local area, city and type.</p>
                   </div>
-                  <form className="w-full lg:w-1/2">
-                      <div className="flex flex-col sm:flex-row justify-center max-w-xs mx-auto sm:max-w-md lg:max-w-none">
-                          <input type="email" className="w-full appearance-none bg-blue-700 border border-blue-500 focus:border-blue-300 rounded-sm px-4 py-3 mb-2 sm:mb-0 sm:mr-2 text-white placeholder-blue-400" placeholder="Your best email…" aria-label="Your best email…"/>
-                          <a className="flex justify-center items-center font-semibold p-2 text-blue-600 bg-blue-100 hover:bg-white shadow"
-                              href="#0">
-                              Subscribe
-                          </a>
-                      </div>
+
+                {/* Form 1 */}
+                <form className="w-full lg:w-1/3 " onSubmit={form1.handleSubmit(onSubmitForm1)}>
+                    <div className="flex gap-2 flex-row justify-center max-w-xs mx-auto sm:max-w-md lg:max-w-none">
+                      <input
+                        type="text"
+                        {...form1.register("area")}
+                        list="hall-suggestions2"
+                        value={inputValue2}
+                        onChange={(e) => setInputValue2(e.target.value)}
+                        className="w-full  appearance-none bg-white border-orange-500 focus:border-blue-300 rounded-sm px-4 py-3 mb-2 sm:mb-0 sm:mr-0 text-gray-700 placeholder-slate-400"
+                        placeholder="Local Area Name"
+                      />
+                      <button type="submit" title="Search" className="mb-2 sm:mb-0 flex justify-center rounded-sm items-center font-semibold p-2 text-orange-600 bg-orange-100 hover:bg-white shadow">
+                      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 128 128">
+                          <path fill="#fff" d="M108.9,108.9L108.9,108.9c-2.3,2.3-6.1,2.3-8.5,0L87.7,96.2c-2.3-2.3-2.3-6.1,0-8.5l0,0c2.3-2.3,6.1-2.3,8.5,0l12.7,12.7C111.2,102.8,111.2,106.6,108.9,108.9z"></path><path fill="#fff" d="M52.3 17.299999999999997A35 35 0 1 0 52.3 87.3A35 35 0 1 0 52.3 17.299999999999997Z" transform="rotate(-45.001 52.337 52.338)"></path><path fill="#fff" d="M52.3 17.299999999999997A35 35 0 1 0 52.3 87.3A35 35 0 1 0 52.3 17.299999999999997Z" transform="rotate(-45.001 52.337 52.338)"></path><path fill="#adf9d2" d="M52.3 84.3c-1.7 0-3-1.3-3-3s1.3-3 3-3c6.9 0 13.5-2.7 18.4-7.6 6.4-6.4 9-15.5 6.9-24.4-.4-1.6.6-3.2 2.2-3.6 1.6-.4 3.2.6 3.6 2.2C86 55.8 82.9 67.1 75 75 68.9 81 60.9 84.3 52.3 84.3zM72.9 35c-.8 0-1.5-.3-2.1-.9L70.8 34c-1.2-1.2-1.2-3.1 0-4.3 1.2-1.2 3-1.2 4.2 0l.1.1c1.2 1.2 1.2 3.1 0 4.3C74.5 34.7 73.7 35 72.9 35z"></path><path fill="#444b54" d="M52.3 90.3c-9.7 0-19.5-3.7-26.9-11.1-14.8-14.8-14.8-38.9 0-53.7 14.8-14.8 38.9-14.8 53.7 0 0 0 0 0 0 0C94 40.3 94 64.4 79.2 79.2 71.8 86.6 62.1 90.3 52.3 90.3zM52.3 20.4c-8.2 0-16.4 3.1-22.6 9.4-12.5 12.5-12.5 32.8 0 45.3C42.2 87.4 62.5 87.4 75 75c12.5-12.5 12.5-32.8 0-45.3C68.7 23.5 60.5 20.4 52.3 20.4zM111 98.3L98.3 85.6c-1.7-1.7-4-2.6-6.4-2.6-1.4 0-2.7.3-3.9.9l-2.5-2.5c-1.2-1.2-3.1-1.2-4.2 0-1.2 1.2-1.2 3.1 0 4.2l2.5 2.5c-1.6 3.3-1 7.5 1.7 10.2L98.3 111c1.8 1.8 4.1 2.6 6.4 2.6s4.6-.9 6.4-2.6c0 0 0 0 0 0 1.7-1.7 2.6-4 2.6-6.4C113.7 102.3 112.7 100 111 98.3zM106.8 106.8C106.8 106.8 106.8 106.8 106.8 106.8c-1.2 1.2-3.1 1.2-4.2 0L89.8 94.1c-1.2-1.2-1.2-3.1 0-4.2 0 0 0 0 0 0 0 0 0 0 0 0 .6-.6 1.3-.9 2.1-.9.8 0 1.6.3 2.1.9l12.7 12.7c.6.6.9 1.3.9 2.1S107.4 106.2 106.8 106.8z"></path>
+                      </svg>
+                      </button>
+                    </div>
+                  </form>
+                  <datalist id="hall-suggestions2">
+                    {filteredSuggestionsArea?.map((hall, index) => (
+                      <option key={index} value={hall.area} />
+                    ))}
+                  </datalist>
+
+
+                  {/* Form 2 */}
+                  <form className="w-full lg:w-1/3 md:ml-2" onSubmit={form2.handleSubmit(onSubmitForm2)}>
+                    <div className="flex gap-2 flex-row justify-center max-w-xs mx-auto sm:max-w-md lg:max-w-none">
+                      <input
+                        type="text"
+                        {...form2.register("city")}
+                        list="hall-suggestions"
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        className=" w-full appearance-none bg-white border-orange-500 focus:border-blue-300 rounded-sm px-4 py-3 mb-2 sm:mb-0 sm:mr-0 text-gray-700 placeholder-slate-400"
+                        placeholder="City Name"
+                      />
+                      <button type="submit" title="Search" className="mb-2 sm:mb-0 flex justify-center rounded-sm items-center font-semibold p-2 text-orange-600 bg-orange-100 hover:bg-white shadow">
+                      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 128 128">
+                          <path fill="#fff" d="M108.9,108.9L108.9,108.9c-2.3,2.3-6.1,2.3-8.5,0L87.7,96.2c-2.3-2.3-2.3-6.1,0-8.5l0,0c2.3-2.3,6.1-2.3,8.5,0l12.7,12.7C111.2,102.8,111.2,106.6,108.9,108.9z"></path><path fill="#fff" d="M52.3 17.299999999999997A35 35 0 1 0 52.3 87.3A35 35 0 1 0 52.3 17.299999999999997Z" transform="rotate(-45.001 52.337 52.338)"></path><path fill="#fff" d="M52.3 17.299999999999997A35 35 0 1 0 52.3 87.3A35 35 0 1 0 52.3 17.299999999999997Z" transform="rotate(-45.001 52.337 52.338)"></path><path fill="#adf9d2" d="M52.3 84.3c-1.7 0-3-1.3-3-3s1.3-3 3-3c6.9 0 13.5-2.7 18.4-7.6 6.4-6.4 9-15.5 6.9-24.4-.4-1.6.6-3.2 2.2-3.6 1.6-.4 3.2.6 3.6 2.2C86 55.8 82.9 67.1 75 75 68.9 81 60.9 84.3 52.3 84.3zM72.9 35c-.8 0-1.5-.3-2.1-.9L70.8 34c-1.2-1.2-1.2-3.1 0-4.3 1.2-1.2 3-1.2 4.2 0l.1.1c1.2 1.2 1.2 3.1 0 4.3C74.5 34.7 73.7 35 72.9 35z"></path><path fill="#444b54" d="M52.3 90.3c-9.7 0-19.5-3.7-26.9-11.1-14.8-14.8-14.8-38.9 0-53.7 14.8-14.8 38.9-14.8 53.7 0 0 0 0 0 0 0C94 40.3 94 64.4 79.2 79.2 71.8 86.6 62.1 90.3 52.3 90.3zM52.3 20.4c-8.2 0-16.4 3.1-22.6 9.4-12.5 12.5-12.5 32.8 0 45.3C42.2 87.4 62.5 87.4 75 75c12.5-12.5 12.5-32.8 0-45.3C68.7 23.5 60.5 20.4 52.3 20.4zM111 98.3L98.3 85.6c-1.7-1.7-4-2.6-6.4-2.6-1.4 0-2.7.3-3.9.9l-2.5-2.5c-1.2-1.2-3.1-1.2-4.2 0-1.2 1.2-1.2 3.1 0 4.2l2.5 2.5c-1.6 3.3-1 7.5 1.7 10.2L98.3 111c1.8 1.8 4.1 2.6 6.4 2.6s4.6-.9 6.4-2.6c0 0 0 0 0 0 1.7-1.7 2.6-4 2.6-6.4C113.7 102.3 112.7 100 111 98.3zM106.8 106.8C106.8 106.8 106.8 106.8 106.8 106.8c-1.2 1.2-3.1 1.2-4.2 0L89.8 94.1c-1.2-1.2-1.2-3.1 0-4.2 0 0 0 0 0 0 0 0 0 0 0 0 .6-.6 1.3-.9 2.1-.9.8 0 1.6.3 2.1.9l12.7 12.7c.6.6.9 1.3.9 2.1S107.4 106.2 106.8 106.8z"></path>
+                          </svg>
+                      </button>
+                    </div>
+                  </form>
+                  <datalist id="hall-suggestions">
+                    {filteredSuggestionsCity.map((hall, index) => (
+                      <option key={index} value={hall.city} />
+                    ))}
+                  </datalist>
+
+
+                  {/* Form 3 */}
+                  <form className="w-full lg:w-1/3 md:ml-2" onSubmit={form3.handleSubmit(onSubmitForm3)}>
+                    <div className=" flex gap-2 flex-row justify-center max-w-xs mx-auto sm:max-w-md lg:max-w-none">
+                      <select
+                        {...form3.register("type", { required: true })}
+                        className="w-full rounded border border-gray-300 bg-white py-3 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+                      >
+                        <option value="" disabled selected>
+                          Select
+                        </option>
+                        <option value="Community center">Community center</option>
+                        <option value="Restaurant">Restaurant</option>
+                      </select>
+                      <button type="submit" className=" flex justify-center rounded-sm items-center font-semibold p-2 text-orange-600 bg-orange-100 hover:bg-white shadow">
+                       <img className="h-7 w-9" src={filterIcn} alt="" />
+                      </button>
+                    </div>
                   </form>
               </div>
           </div>
@@ -62,14 +162,17 @@ const Halls = () => {
   </section>
     
     
-    
+
     
     
     
     <div className="lg:w-3/4 xl:w-3/4 lg:mx-auto">
-
+    
+    <div className={`${loading? "block" : " hidden"}`}>
+      <div className="flex justify-center"> <span className="loading loading-bars loading-lg text-red-500 flex justify-center"></span></div>
+      </div>
     { 
-            halls?.map((hall) => (
+            filterHalls?.map((hall) => (
                 <div key={hall._id} className="mb-5   group relative -mx-4 sm:-mx-8 p-6 sm:p-8 rounded-3xl bg-white  border border-transparent hover:border-gray-100  shadow-2xl shadow-transparent hover:shadow-gray-600/10 sm:gap-8 sm:flex transition duration-300 hover:z-10">
                 <div className="sm:w-2/6 rounded-3xl overflow-hidden transition-all duration-500 group-hover:rounded-xl">
                   <img
