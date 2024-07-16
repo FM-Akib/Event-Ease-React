@@ -27,7 +27,7 @@ const Halls = () => {
       
       <section className="mb-5">
       <div className="max-w-6xl  mx-auto px-4 sm:px-6">
-          <div className="relative rounded-md bg-blue-600 py-10 px-8 md:py-16 md:px-12 aos-init">
+          <div className="relative rounded-md bg-orange-600 py-10 px-8 md:py-16 md:px-12 aos-init">
               <div className="absolute right-0 top-0 -ml-40 pointer-events-none" aria-hidden="true">
                   <svg width="238" height="110" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <defs>
@@ -45,7 +45,7 @@ const Halls = () => {
               <div className="relative flex flex-col lg:flex-row justify-between items-center">
                   <div className="mb-6 lg:mr-16 lg:mb-0 text-center lg:text-left lg:w-1/2">
                       <h3 className="h3 text-white mb-2">Find your event hall</h3>
-                      <p className="text-blue-200 text-lg">Join our newsletter to get top news before anyone else.</p>
+                      <p className="text-white text-lg">Join our newsletter to get top news before anyone else.</p>
                   </div>
                   <form className="w-full lg:w-1/2">
                       <div className="flex flex-col sm:flex-row justify-center max-w-xs mx-auto sm:max-w-md lg:max-w-none">

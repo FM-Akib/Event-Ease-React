@@ -43,7 +43,7 @@ const Pricing = ({ hall }) => {
                 <span className="font-semibold text-primary">
                   <PiCheckCircleDuotone className="text-emerald-500" />
                 </span>
-                <span>Day  - {hall.price.dayAc}৳</span>
+                <span>Day  - {hall.price.priceDay} ৳</span>
               </li>
               {/* <li className="space-x-2 flex items-center">
                 <span className="font-semibold text-primary">
@@ -55,7 +55,7 @@ const Pricing = ({ hall }) => {
                 <span className="font-semibold text-primary">
                   <PiCheckCircleDuotone className="text-emerald-500" />
                 </span>
-                <span>Night - {hall.price.nightAc}৳</span>
+                <span>Night - {hall.price.priceNight} ৳</span>
               </li>
               {/* <li className="space-x-2 flex items-center">
                 <span className="font-semibold text-primary">
