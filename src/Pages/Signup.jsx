@@ -9,8 +9,9 @@ import { FaBuildingWheat } from "react-icons/fa6";
 
 
 const notify_Signup = () => toast.success('Signup Successful!')
- const image_hosting_key= import.meta.env.VITE_apiKey_Image;
- const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
+
+const image_hosting_key= import.meta.env.VITE_apiKey_Image;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 
 const Signup = () => {
@@ -21,7 +22,7 @@ const Signup = () => {
   const {CreateUserEmailPassword,SigninWithGoogle} = useContext(AuthContext); 
 
   const navigate = useNavigate();
-   const axiosPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
 
 
   const handleGoogleSignUp= ()=>{
