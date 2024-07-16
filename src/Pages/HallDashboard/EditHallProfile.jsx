@@ -70,7 +70,11 @@ const EditHallProfile = () => {
                 data.Lift,
                 data.Wifi
             ],
-            price: data.price,
+            price: {
+               priceDay: data.priceDay,
+               priceNight: data.priceNight,
+            },
+            discount: data.discount,
             description: data.description,
             history: data.history,
             floor: data.floor,
@@ -128,18 +132,18 @@ const EditHallProfile = () => {
     <div className="p-6 space-y-6">
       
         <form onSubmit={handleSubmit(onSubmit)} >
-            <div className="grid grid-cols-6 gap-6">
+            <div className="grid grid-cols-6 gap-6 pb-5">
 
                 <div className="col-span-6 sm:col-span-3">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Hall Name</label>
                     <input {...register("hallName", { required: true })} type="text" defaultValue={loggedHall?.hallName ? loggedHall?.hallName : ''}  className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Your hall name" required=""/>
-                    {errors.hallName && <span>required</span>}
+                    {errors.hallName && <span className="text-red-500">required</span>}
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Guest Capacity</label>  
                     <input {...register("guestCapacity", { required: true })} type="text" defaultValue={loggedHall?.guestCapacity ? loggedHall?.guestCapacity : '0'}  className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="5000" required=""/>
-                    {errors.guestCapacity && <span>required</span>}
+                    {errors.guestCapacity && <span className="text-red-500">required</span>}
                 </div>
 
                 <div className="col-span-6 grid grid-cols-5 gap-4 ">
@@ -177,48 +181,48 @@ const EditHallProfile = () => {
                 <div className="col-span-6 sm:col-span-3">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Table Batch</label>
                     <input {...register("tableBatch", { required: true })} type="text" defaultValue={loggedHall?.tableBatch ? loggedHall?.tableBatch : '0'} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="300+" required=""/>
-                    {errors.tableBatch && <span>required</span>}
+                    {errors.tableBatch && <span className="text-red-500">required</span>}
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
                     <label className="text-sm font-medium text-gray-900 block mb-2">Area sq ft</label>
                     <input {...register("areas", { required: true })} type="number" defaultValue={loggedHall?.areas ? loggedHall?.areas : '0'} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="1500" required=""/>
-                    {errors.areas && <span>required</span>}
+                    {errors.areas && <span className="text-red-500">required</span>}
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Parking Area</label>
                     <input {...register("parkingAreas", { required: true })} type="text" defaultValue={loggedHall?.parkingAreas ? loggedHall?.parkingAreas : '0'}  className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="300" required=""/>
-                    {errors.parkingAreas && <span>required</span>}
+                    {errors.parkingAreas && <span className="text-red-500">required</span>}
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Location</label>  
                     <input {...register("location", { required: true })} type="text" defaultValue={loggedHall?.location ? loggedHall?.location : ''  } className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Mohakhali DOHS, VIP Road, Dhaka-1206" required=""/>
-                    {errors.location && <span>required</span>}
+                    {errors.location && <span className="text-red-500">required</span>}
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">City</label>
                     <input {...register("city", { required: true })} type="text" defaultValue={loggedHall?.city ? loggedHall?.city : '' }  className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Dhaka" required=""/>
-                    {errors.city && <span>required</span>}
+                    {errors.city && <span className="text-red-500">required</span>}
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Local Area Name</label>  
                     <input {...register("area", { required: true })} type="text" defaultValue={loggedHall?.area ? loggedHall?.area : '' } className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Mohakhali" required=""/>
-                    {errors.area && <span>required</span>}
+                    {errors.area && <span className="text-red-500">required</span>}
                 </div>
                 <div className="col-span-6 sm:col-span-3">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Shift</label>
                     <input {...register("shift", { required: true })} type="text" defaultValue={loggedHall?.shift ? loggedHall?.shift : '' }  className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Noon,Night" required=""/>
-                    {errors.shift && <span>required</span>}
+                    {errors.shift && <span className="text-red-500">required</span>}
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Floor</label>  
                     <input {...register("floor", { required: true })} type="text" defaultValue={loggedHall?.floor ? loggedHall?.floor : '' } className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="1/2.." required=""/>
-                    {errors.floor && <span>required</span>}
+                    {errors.floor && <span className="text-red-500">required</span>}
                 </div>
 
                 
@@ -231,7 +235,7 @@ const EditHallProfile = () => {
                     <option value="AC">Yes</option>
                     <option value="">No</option>
                    </select>
-                   {errors.AC && <span>required</span>}
+                   {errors.AC && <span className="text-red-500">required</span>}
                    </div>
 
                    <div className="col-span-3 md:col-span-1">
@@ -241,7 +245,7 @@ const EditHallProfile = () => {
                     <option value="Catering">Yes</option>
                     <option value="">No</option>
                    </select>
-                   {errors.Catering && <span>required</span>}
+                   {errors.Catering && <span className="text-red-500">required</span>}
                    </div>
                    <div className="col-span-3 md:col-span-1">
                     <label htmlFor="options" className="text-sm leading-7 text-gray-600">CCTV</label>
@@ -250,7 +254,7 @@ const EditHallProfile = () => {
                     <option value="CCTV">Yes</option>
                     <option value="">No</option>
                    </select>
-                   {errors.CCTV && <span>required</span>}
+                   {errors.CCTV && <span className="text-red-500">required</span>}
                    </div>
                    <div className="col-span-3 md:col-span-1">
                     <label htmlFor="options" className="text-sm leading-7 text-gray-600">Cooking</label>
@@ -259,7 +263,7 @@ const EditHallProfile = () => {
                     <option value="Cooking">Yes</option>
                     <option value="">No</option>
                    </select>
-                   {errors.Cooking && <span>required</span>}
+                   {errors.Cooking && <span className="text-red-500">required</span>}
                    </div>
                    <div className="col-span-3 md:col-span-1">
                     <label htmlFor="options" className="text-sm leading-7 text-gray-600">Generator</label>
@@ -268,7 +272,7 @@ const EditHallProfile = () => {
                     <option value="Generator">Yes</option>
                     <option value="">No</option>
                    </select>
-                   {errors.Generator && <span>required</span>}
+                   {errors.Generator && <span className="text-red-500">required</span>}
                    </div>
                    <div className="col-span-3 md:col-span-1">
                     <label htmlFor="options" className="text-sm leading-7 text-gray-600">Lift</label>
@@ -277,7 +281,7 @@ const EditHallProfile = () => {
                     <option value="Lift">Yes</option>
                     <option value="">No</option>
                    </select>
-                   {errors.Lift && <span>required</span>}
+                   {errors.Lift && <span className="text-red-500">required</span>}
                    </div>
                    <div className="col-span-3 md:col-span-1">
                     <label htmlFor="options" className="text-sm leading-7 text-gray-600">Wifi</label>
@@ -286,7 +290,7 @@ const EditHallProfile = () => {
                     <option value="Wifi">Yes</option>
                     <option value="">No</option>
                    </select>
-                   {errors.Wifi && <span>required</span>}
+                   {errors.Wifi && <span className="text-red-500">required</span>}
                    </div>
                    <div className="col-span-3 md:col-span-2">
                     <label htmlFor="options" className="text-sm leading-7 text-gray-600">Type</label>
@@ -295,7 +299,7 @@ const EditHallProfile = () => {
                     <option value="Community center">Community center</option>
                     <option value="Restaurent">Restaurent</option>
                    </select>
-                   {errors.type && <span>required</span>}
+                   {errors.type && <span className="text-red-500">required</span>}
                    </div>
 
                 </div>
@@ -303,44 +307,44 @@ const EditHallProfile = () => {
                 <div className="col-span-6 sm:col-span-3">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Video</label>  
                     <input {...register("video", { required: true })} type="text" defaultValue={loggedHall?.video ? loggedHall?.video : '' }  className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="give a youTube video url" required=""/>
-                   {errors.video && <span>required</span>}
+                   {errors.video && <span className="text-red-500">required</span>}
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Food Type</label>  
                     <input {...register("food", { required: true })} type="text"  defaultValue={loggedHall?.food ? loggedHall?.food : ''} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Bangladeshi/Chinese" required=""/>
-                    {errors.food && <span>required</span>}
+                    {errors.food && <span className="text-red-500">required</span>}
                 </div>
 
-                <div className="col-span-6 grid grid-cols-6 gap-4 ">
+                <div className="col-span-6 grid grid-cols-5 gap-4 ">
                    
-                   <div className="col-span-3 md:col-span-1">
+                   <div className="col-span-2 md:col-span-1">
                    <label  className="text-sm font-medium text-gray-900 block mb-2">Food item 1</label>  
                    <input {...register("item1", { required: true })} type="text" defaultValue={loggedHall?.items[0] ? loggedHall?.items[0] : ''} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Salad" required=""/>
-                   {errors.item1 && <span>required</span>}
+                   {errors.item1 && <span className="text-red-500">required</span>}
                    </div>
 
                    <div className="col-span-3 md:col-span-1">
                    <label  className="text-sm font-medium text-gray-900 block mb-2">Food item 2</label>  
                    <input {...register("item2", { required: true })} type="text" defaultValue={loggedHall?.items[1] ? loggedHall?.items[1] : ''} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Soup" required=""/>
-                   {errors.item2 && <span>required</span>}
+                   {errors.item2 && <span className="text-red-500">required</span>}
                    </div>
-                   <div className="col-span-3 md:col-span-1">
+                   <div className="col-span-2 md:col-span-1">
                    <label  className="text-sm font-medium text-gray-900 block mb-2">Food item 3</label>  
                    <input {...register("item3", { required: true })} type="text" defaultValue={loggedHall?.items[2] ? loggedHall?.items[2] : ''} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Main Course" required=""/>
-                   {errors.item3 && <span>required</span>}
+                   {errors.item3 && <span className="text-red-500">required</span>}
                    </div>
 
                    <div className="col-span-3 md:col-span-1">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Food item 4</label>  
                     <input {...register("item4", { required: true })} type="text" defaultValue={loggedHall?.items[3] ? loggedHall?.items[3] : ''} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Desserts" required=""/>
-                    {errors.item4 && <span>required</span>}
+                    {errors.item4 && <span className="text-red-500">required</span>}
                    </div>
 
                    <div className="col-span-3 md:col-span-1">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Food item 5</label>  
                     <input {...register("item5", { required: true })} type="text" defaultValue={loggedHall?.items[4] ? loggedHall?.items[4] : ''} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Vegetables" required=""/>
-                    {errors.item5 && <span>required</span>}
+                    {errors.item5 && <span className="text-red-500">required</span>}
                    </div>
 
                 </div>
@@ -348,36 +352,47 @@ const EditHallProfile = () => {
                 <div className="col-span-6 sm:col-span-3">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Food Cost</label>  
                     <input {...register("cost", { required: true })} type="text" defaultValue={loggedHall?.cost ? loggedHall?.cost : ''} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Varies" required=""/>
-                    {errors.cost && <span>required</span>}
+                    {errors.cost && <span className="text-red-500">required</span>}
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
-                    <label className="text-sm font-medium text-gray-900 block mb-2">Pricing</label>
-                    <textarea {...register("price", { required: true })} rows="1" defaultValue={loggedHall?.price ? loggedHall?.price : ''} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="Details"></textarea>
-                    {errors.price && <span>required</span>}
+                    <label  className="text-sm font-medium text-gray-900 block mb-2">Price Discount(%)</label>  
+                    <input {...register("discount", { required: true })} type="text" defaultValue={loggedHall?.discount ? loggedHall?.discount : ''} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="10" required=""/>
+                    {errors.cost && <span className="text-red-500">required</span>}
+                </div>
+
+                <div className="col-span-6 sm:col-span-3">
+                    <label className="text-sm font-medium text-gray-900 block mb-2">Pricing for day booking</label>
+                    <textarea {...register("priceDay", { required: true })} rows="1" defaultValue={loggedHall?.priceDay ? loggedHall?.priceDay : ''} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="150000"></textarea>
+                    {errors.price && <span className="text-red-500">required</span>}
+                </div>
+                <div className="col-span-6 sm:col-span-3">
+                    <label className="text-sm font-medium text-gray-900 block mb-2">Pricing for night booking</label>
+                    <textarea {...register("priceNight", { required: true })} rows="1" defaultValue={loggedHall?.priceNight ? loggedHall?.priceNight : ''} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="150000"></textarea>
+                    {errors.price && <span className="text-red-500">required</span>}
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Contact</label>  
                     <input {...register("contact", { required: true })} type="text" defaultValue={loggedHall?.contact ? loggedHall?.contact : ''} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="+8801701741656" required=""/>
-                    {errors.contact && <span>required</span>}
+                    {errors.contact && <span className="text-red-500">required</span>}
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
                     <label  className="text-sm font-medium text-gray-900 block mb-2">Website</label>  
                     <input {...register("website", { required: true })} type="text" defaultValue={loggedHall?.website ? loggedHall?.website : ''} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="www.eventease.com.bd" required=""/>
-                    {errors.website && <span>required</span>}
+                    {errors.website && <span className="text-red-500">required</span>}
                 </div>
 
                 <div className="col-span-full">
                     <label className="text-sm font-medium text-gray-900 block mb-2">Description</label>
                     <textarea {...register("description", { required: true })} defaultValue={loggedHall?.description ? loggedHall?.description : ''} rows="3" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="Raowa Convention Center rent, price, details. রাওয়া কনভেনশন সেন্টার Mohakhali, VIP Road, Dhaka 1206. RETIRED ARMED FORCES OFFICER’S WELFARE ASSOCIATION."></textarea>
-                    {errors.description && <span>required</span>}
+                    {errors.description && <span className="text-red-500">required</span>}
                 </div>
                 <div className="col-span-full">
                     <label className="text-sm font-medium text-gray-900 block mb-2">History</label>
                     <textarea {...register("history", { required: true })} defaultValue={loggedHall?.history ? loggedHall?.history : ''} rows="2" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="Established in 1990, this hall has hosted numerous prestigious events."></textarea>
-                    {errors.history && <span>required</span>}
+                    {errors.history && <span className="text-red-500">required</span>}
                 </div>
             </div>
         

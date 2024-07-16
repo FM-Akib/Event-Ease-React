@@ -66,6 +66,8 @@ const AHallPage = () => {
                 <p>Invalid YouTube URL</p>
               )}
             </div>
+
+            <Contact hall={ahall} />
           </div>
 
           {/* Sidebar */}
@@ -73,7 +75,6 @@ const AHallPage = () => {
             <Facilities ahall={ahall} />
             <Catering hall={ahall} />
             <Pricing hall={ahall} />
-            <Contact hall={ahall} />
           </div>
         </div>
       </div>

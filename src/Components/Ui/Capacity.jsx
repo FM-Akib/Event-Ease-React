@@ -13,7 +13,7 @@ const Capacity = ({ ahall }) => {
       </div>
 
       <div className="mx-auto grid justify-center gap-4 grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
-        <div className="relative overflow-hidden rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-2">
+        <div className=" rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-2">
           <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
             <MdOutlineChair className="h-12 w-12 fill-current text-gray-700" />
             <div className="space-y-2">
@@ -23,7 +23,7 @@ const Capacity = ({ ahall }) => {
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-2">
+        <div className=" rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-2">
           <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
             <MdTableBar className="h-12 w-12 fill-current text-gray-700" />
             <div className="space-y-2">
@@ -33,7 +33,7 @@ const Capacity = ({ ahall }) => {
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-2">
+        <div className=" rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-2">
           <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
             <HiHome className="h-12 w-12 fill-current text-gray-700" />
             <div className="space-y-2">
@@ -43,7 +43,7 @@ const Capacity = ({ ahall }) => {
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-2">
+        <div className=" rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-2">
           <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
             <BsCarFrontFill className="h-12 w-12 fill-current text-gray-700" />
             <div className="space-y-2">
@@ -53,7 +53,7 @@ const Capacity = ({ ahall }) => {
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-2">
+        <div className=" rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-2">
           <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
             <BiSolidBuildingHouse className="h-12 w-12 fill-current text-gray-700" />
             <div className="space-y-2">
@@ -63,7 +63,7 @@ const Capacity = ({ ahall }) => {
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-2">
+        <div className=" rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-2">
           <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
             <MdOutlineNightsStay className="h-12 w-12 fill-current text-gray-700" />
             <div className="space-y-2">
