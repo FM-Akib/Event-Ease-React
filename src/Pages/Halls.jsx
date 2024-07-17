@@ -25,7 +25,7 @@ const Halls = () => {
   const onSubmitForm1 = (data) => {
     setLoading(true)
     console.log(data.area)
-    const areaSearch = halls.filter((hall) => hall.area.toLowerCase() === data.area.toLowerCase());
+    const areaSearch = halls?.filter((hall) => hall.area.toLowerCase() === data.area.toLowerCase());
     setFilterHalls(areaSearch); 
     setLoading(false)
 
@@ -33,14 +33,14 @@ const Halls = () => {
 
   const onSubmitForm2 = (data) => {
     setLoading(true)
-    const citySearch = halls.filter((hall) => hall.city.toLowerCase() === data.city.toLowerCase());
+    const citySearch = halls?.filter((hall) => hall.city.toLowerCase() === data.city.toLowerCase());
     setFilterHalls(citySearch);   
     setLoading(false)
   };
 
   const onSubmitForm3 = (data) => {
     setLoading(true)
-    const typeSearch = halls.filter((hall) => hall.type.toLowerCase() === data.type.toLowerCase());
+    const typeSearch = halls?.filter((hall) => hall.type.toLowerCase() === data.type.toLowerCase());
     setFilterHalls(typeSearch); 
     setLoading(false)
   };

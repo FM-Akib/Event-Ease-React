@@ -30,7 +30,7 @@ const Signup = () => {
     .then((result) => {
         const Loggeduser = result.user;
             console.log(Loggeduser)
-            setLoading(true);
+            // setLoading(true);
 
             const user ={
                 name: result.user?.displayName,
@@ -44,7 +44,7 @@ const Signup = () => {
             axiosPublic.post('/users',user)
             .then((result) => {
                 if(result.insertedId>0){
-                    setLoading(false);
+                    // setLoading(false);
                     notify_Signup() 
                     navigate('/',{replace: true})
                 }

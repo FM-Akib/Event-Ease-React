@@ -293,7 +293,7 @@ const Signuphall = () => {
             </button>
             
             <Link to="/signup" className="flex-1 px-3 py-1 rounded-lg border-2">
-            <button onClick={handleGoogleSignUp} aria-label="" className=" flex items-center justify-center p-1">
+            <button aria-label="" className=" flex items-center justify-center p-1">
             <FaRegCircleUser className='text-2xl'/>
             <p className="text-left ml-4 text-sm leading-tight	">Register as a user</p>
             </button>

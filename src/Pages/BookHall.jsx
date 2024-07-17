@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import { BiSend } from "react-icons/bi";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { TbCalendarTime } from "react-icons/tb";
+
 
 const BookHall = () => {
     const hall = useLoaderData()
@@ -26,7 +28,8 @@ const BookHall = () => {
     };
   
     return (
-        <div className="px-20 py-10">
+      <div className="bg-[url('https://i.ibb.co/BctBnYS/pattern-vector.jpg')] bg-cover">
+        <div className="px-20 py-10 bg-white/80 ">
         <div className="w-8/12 mx-auto mt-3 flex flex-col border rounded-lg bg-white p-8">
           <section className="w-full max-w-5xl mx-auto px-5 lg:px-0">
             <div className="bg-gray-800 p-6 md:p-10 rounded-2xl mx-auto flex flex-col gap-y-5 justify-center items-center relative">
@@ -61,22 +64,21 @@ const BookHall = () => {
                 <label htmlFor="options" className="text-sm leading-7 text-gray-600">Booking Type</label>
                 <select id="options" name="options" {...register('options', { required: true })} className="w-full rounded border border-gray-300 bg-white py-2 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
                   <option value="" disabled selected>Select an option</option>
-                  <option value="Day with AC">Day with AC</option>
-                  <option value="Day without AC">Day without AC</option>
-                  <option value="Night with AC">Night with AC</option>
-                  <option value="Night without AC">Night without AC</option>
+                  <option value="Day">Day</option>
+                  <option value="Night">Night</option>
                 </select>
                 {errors.options && <span className="text-red-600">This field is required</span>}
               </div>
             </div>
-            <div className="mb-4">
-              <label htmlFor="date" className="text-sm leading-7 text-gray-600">Select Date</label>
+
+            <div className="mb-4 ">
+              <label htmlFor="date" className="mb-2 text-sm leading-7 text-gray-600 font-semibold  mr-4 flex items-center"><TbCalendarTime className="mr-1 text-xl" />Select date for bookings</label>
               <DatePicker
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
                 filterDate={filterDates}
                 placeholderText="Select a date"
-                className="w-full rounded border border-gray-300 bg-white py-1 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+                className="w-full rounded border border-gray-300 bg-white py-1 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
               />
               {errors.date && <span className="text-red-600">This field is required</span>}
             </div>
@@ -90,6 +92,7 @@ const BookHall = () => {
           </form>
           <p className="mt-3 text-xs text-gray-500">Feel free to connect with us on social media platforms.</p>
         </div>
+      </div>
       </div>
     );
 };

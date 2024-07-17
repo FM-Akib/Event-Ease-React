@@ -15,7 +15,7 @@ const Navbar = () => {
         .catch(err => console.log(err));
         nagate('/')
       }
-
+// console.log(userInfo)
 
   return (
     <nav className="fixed top-0 z-40 w-full bg-[#FEFCE8]/90 md:px-20">
@@ -114,7 +114,7 @@ const Navbar = () => {
           {
             user ? <>
             
-            <NavLink to="/dashboardHall/home">
+            <NavLink to={`${userInfo.type==='hall' ? '/dashboardHall/home' : '/dashboardUser/home'}`}>
             <div className="h-10 w-10 overflow-hidden rounded-full ring-2 ring-orange-600 cursor-pointer ">
             <img src={userInfo.image} alt=""/>
             </div>
