@@ -5,51 +5,57 @@ import { Link } from "react-router-dom";
 import useAllHalls from "../Hooks/useAllHalls";
 import { useForm } from "react-hook-form";
 import filterIcn from '../assets/filter.png'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Halls = () => {
   
-  const {  halls } = useAllHalls();
-  const [filterHalls,setFilterHalls] =  useState(halls)
-  
+  const { halls } = useAllHalls();
+  const [filterHalls, setFilterHalls] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [inputValue2, setInputValue2] = useState("");
+
   // Form handlers for each form
   const form1 = useForm();
   const form2 = useForm();
   const form3 = useForm();
 
-  const [loading,setLoading]=useState(false)
-  const [inputValue, setInputValue] = useState("");
-  const [inputValue2, setInputValue2] = useState("");
+  useEffect(() => {
+    if (halls) {
+      setFilterHalls(halls);
+    }
+  }, [halls]);
 
   // Submission handlers for each form
   const onSubmitForm1 = (data) => {
-    setLoading(true)
-    console.log(data.area)
+    setLoading(true);
     const areaSearch = halls?.filter((hall) => hall.area.toLowerCase() === data.area.toLowerCase());
-    setFilterHalls(areaSearch); 
-    setLoading(false)
-
+    setFilterHalls(areaSearch);
+    setLoading(false);
   };
 
   const onSubmitForm2 = (data) => {
-    setLoading(true)
+    setLoading(true);
     const citySearch = halls?.filter((hall) => hall.city.toLowerCase() === data.city.toLowerCase());
-    setFilterHalls(citySearch);   
-    setLoading(false)
+    setFilterHalls(citySearch);
+    setLoading(false);
   };
 
   const onSubmitForm3 = (data) => {
-    setLoading(true)
+    setLoading(true);
     const typeSearch = halls?.filter((hall) => hall.type.toLowerCase() === data.type.toLowerCase());
-    setFilterHalls(typeSearch); 
-    setLoading(false)
+    setFilterHalls(typeSearch);
+    setLoading(false);
   };
-  const filteredSuggestionsCity = halls.filter((hall) =>
+
+  const filteredSuggestionsCity = halls?.filter((hall) =>
     hall.city.toLowerCase().includes(inputValue.toLowerCase())
   );
-  const filteredSuggestionsArea = halls.filter((hall) =>
-    hall.area.toLowerCase().includes(inputValue.toLowerCase())
+  
+  const filteredSuggestionsArea = halls?.filter((hall) =>
+    hall.area.toLowerCase().includes(inputValue2.toLowerCase())
   );
+
 
     return (
      
@@ -132,7 +138,7 @@ const Halls = () => {
                     </div>
                   </form>
                   <datalist id="hall-suggestions">
-                    {filteredSuggestionsCity.map((hall, index) => (
+                    {filteredSuggestionsCity?.map((hall, index) => (
                       <option key={index} value={hall.city} />
                     ))}
                   </datalist>

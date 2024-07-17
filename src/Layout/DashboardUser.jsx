@@ -1,5 +1,5 @@
 import { FiMenu } from "react-icons/fi";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import AsideDashboard from "../Components/Dashboard/AsideDashboard";
 const DashboardUser = () => {
     return (
@@ -13,7 +13,9 @@ const DashboardUser = () => {
         <label htmlFor="my-drawer-2" className="btn bg-orange-500 drawer-button lg:hidden">
         <FiMenu className="text-xl text-white"/>
         </label>
+       <Link to="/">
         <img src="https://i.ibb.co/8xvPxSF/Event-Ease.png" className="h-10 ml-3" alt="" />  
+        </Link>
         <h1 className="ml-4 text-2xl font-bold hidden md:block "> Welcome to <span className="text-orange-500">Dashboard</span>  </h1>
         </div>
       
