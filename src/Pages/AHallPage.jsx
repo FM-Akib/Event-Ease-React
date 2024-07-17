@@ -2,12 +2,12 @@ import { IoLocationOutline } from "react-icons/io5";
 import { RiCommunityLine } from "react-icons/ri";
 import { PiShieldStarLight } from "react-icons/pi";
 import { useLoaderData } from "react-router-dom";
-import Gallery from "../Components/Ui/Gallery";
 import Capacity from "../Components/Ui/Capacity";
 import Facilities from "../Components/Ui/Facilities";
 import Catering from "../Components/Ui/Catering";
 import Pricing from "../Components/Ui/Pricing";
 import Contact from "../Components/Ui/Contact";
+import GalleryCarousel from "../Components/Ui/GalleryCarousel";
 const AHallPage = () => {
     const ahall = useLoaderData()
 
@@ -30,13 +30,14 @@ const AHallPage = () => {
                 <RiCommunityLine className='mr-1' />
                 {ahall.hallName}
               </h1>
-              <p className="text-gray-600 flex items-center justify-center bg-slate-100 mt-1 px-2 rounded-md">
+              <p className="text-gray-600 mb-4 flex items-center justify-center bg-slate-100 mt-1 px-2 rounded-md">
                 <IoLocationOutline className='mr-1' />
                 {ahall.location}
               </p>
             </div>
 
-            <Gallery images={ahall.images} />
+            {/* <Gallery images={ahall.images} /> */}
+            <GalleryCarousel images={ahall.images} />
 
             <div className="mt-2 text-gray-700">
               <p>{ahall.description}</p>
