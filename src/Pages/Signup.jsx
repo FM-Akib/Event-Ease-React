@@ -37,7 +37,7 @@ const Signup = () => {
                 email: result.user?.email,
                 image: result.user?.photoURL,
                 type: "user",
-
+                mybookings:[]
             }
 
 
@@ -79,6 +79,7 @@ const Signup = () => {
                 image: res.data.data.display_url,
                 contact: data.contact,
                 type: "user",
+                mybookings:[],
               }
             axiosPublic.post('/users',user)
             .then(result => {
