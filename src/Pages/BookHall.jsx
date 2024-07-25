@@ -34,21 +34,22 @@ const BookHall = () => {
       const booking = data;
 
        //insert in booking collection
-       axiosPublic.patch(`/updateBooking/${hall._id}`,bookedDate,booking)
+       axiosPublic.patch(`/updateBooking/${hall._id}/${userInfo.email}`,bookedDate,booking)
        .then(result => {
            if(result.data.insertedId) {
-            //  setLoading(false);
+            setLoading(false);
+            notify_Bookings();
            }
        })
       
        
-       axiosPublic.patch(`/users/bookings/${userInfo.email}`,booking)
-       .then(result => {
-           if(result.data.insertedId) {
-             setLoading(false);
-             notify_Bookings();
-           }
-       })
+      //  axiosPublic.patch(`/users/bookings/${userInfo.email}`,booking)
+      //  .then(result => {
+      //      if(result.data.insertedId) {
+      //        setLoading(false);
+      //        notify_Bookings();
+      //      }
+      //  })
       
        console.log(data);
     };
