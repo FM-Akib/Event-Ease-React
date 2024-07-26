@@ -9,12 +9,50 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 import useUserInfo from "../Hooks/useUserInfo";
 import toast from "react-hot-toast";
 
-const notify_Bookings = () => toast.success(
-  "Thanks for booking, your booking taken.\n\nBooking agent will contact you soon.",
-  {
-    duration: 5000,
-  }
-);
+// const notify_Bookings = () => toast.success(
+//   "Thanks for booking, your booking taken.\n\nBooking agent will contact you soon.",
+//   {
+//     duration: 5000,
+//   }
+// );
+
+const notify_Bookings = ()=>toast.custom((t) => (
+  <div
+    className={`${
+      t.visible ? 'animate-enter' : 'animate-leave'
+    } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+  >
+    <div className="flex-1 w-0 p-4">
+      <div className="flex items-start">
+        <div className="flex-shrink-0 pt-0.5">
+          <img
+            className="h-10 w-10 rounded-full"
+            src="https://i.ibb.co/qm6D4WH/succ.png"
+            alt=""
+          />
+        </div>
+        <div className="ml-3 flex-1">
+          <p className="text-sm font-medium text-gray-900">
+          Thanks for booking, your booking taken.
+          </p>
+          <p className="mt-1 text-sm text-gray-500">
+          Booking agent will contact you soon.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div className="flex border-l border-gray-200">
+      <button
+        onClick={() => toast.dismiss(t.id)}
+        className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-emerald-600 hover:text-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+),{
+  duration: 5000,
+})
 
 const BookHall = () => {
    const hall = useLoaderData()
@@ -29,29 +67,33 @@ const BookHall = () => {
       setLoading(true);
       data.date = startDate;
       
-      console.log(data.date);
-      const bookedDate = data.date;
-      const booking = data;
+      const bookingDate = new Date (data.date);
+      const bookedDate = bookingDate.toISOString()
+      const booking = {
+        name: data.name,
+        email: data.email,
+        date: bookedDate,
+        contact: data.contact,
+        options: data.options,
+        hallName: hall.hallName,
+        hallContact: hall.contact
+      };
 
-       //insert in booking collection
-       axiosPublic.patch(`/updateBooking/${hall._id}/${userInfo.email}`,bookedDate,booking)
-       .then(result => {
-           if(result.data.insertedId) {
-            setLoading(false);
-            notify_Bookings();
-           }
-       })
       
+      const result1 = await axiosPublic.patch(`/updateBookingDate/${hall._id}`,{bookedDate})
+      console.log(result1);
+   
+      const result2 = await axiosPublic.patch(`/updateBookingUser/${userInfo.email}`,{booking})
+      console.log(result2);
+
+      //insert in booking collection
+      const result3 = await axiosPublic.patch(`/updateBookinghall/${hall._id}`,{booking})
        
-      //  axiosPublic.patch(`/users/bookings/${userInfo.email}`,booking)
-      //  .then(result => {
-      //      if(result.data.insertedId) {
-      //        setLoading(false);
-      //        notify_Bookings();
-      //      }
-      //  })
-      
-       console.log(data);
+      if(result3.data.result.modifiedCount) {
+        setLoading(false);
+        notify_Bookings();
+      }
+
     };
   
     const isBooked = (date) => {
