@@ -22,7 +22,6 @@ const AsideDashboard = () => {
       {/* User Left Nav  */}
 
       
-      <li className="border-[1px] py-1 px-1 rounded-lg bg-white/80"><Link to="/dashboardUser/edit" className="flex items-center"><FaUserEdit  className="text-xl"/>Edit Profile</Link></li>
       <li className="border-[1px] py-1 px-1 rounded-lg bg-white/80"><Link to="/dashboardUser/mybookings" className="flex items-center"><TbCalendarTime  className="text-xl"/>My Bookings</Link></li>  
       </>
     }
