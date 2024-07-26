@@ -205,7 +205,7 @@ const Halls = () => {
       
                   <div className="flex gap-4 flex-wrap">
                     {
-                        hall.facilities.map((afacility,i)=><span  key={i} className="px-3 py-1 rounded-full border border-gray-200 text-sm font-medium text-primary transition duration-300 hover:border-transparent hover:bg-primary hover:text-white  ">
+                        hall.facilities.map((afacility,i)=><span  key={i} className="px-3 py-1 rounded-full border border-gray-200 text-sm font-medium text-orange-500 transition duration-300 hover:border-transparent hover:bg-orange-500 hover:text-white  ">
                             {afacility}
                           </span> )
                     }

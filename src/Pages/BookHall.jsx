@@ -76,7 +76,8 @@ const BookHall = () => {
         contact: data.contact,
         options: data.options,
         hallName: hall.hallName,
-        hallContact: hall.contact
+        hallContact: hall.contact,
+        hallId: hall._id
       };
 
       
