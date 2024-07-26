@@ -15,6 +15,7 @@ import HomeHall from "../Pages/HallDashboard/HomeHall";
 import EditHallProfile from "../Pages/HallDashboard/EditHallProfile";
 import DashboardUser from "../Layout/DashboardUser";
 import HomeUser from "../Pages/UserDashboard/HomeUser";
+import MyBookings from "../Pages/UserDashboard/MyBookings";
 
 export const router = createBrowserRouter([
     {
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
         {
           path:'home',
           element: <HomeUser/>
+        },
+        {
+          path:'mybookings',
+          element: <MyBookings/>
         }
       ]
     },
