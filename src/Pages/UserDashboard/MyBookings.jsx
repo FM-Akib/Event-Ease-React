@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import useUserInfo from "../../Hooks/useUserInfo";
 import { BsCalendar2Date } from "react-icons/bs";
 const MyBookings = () => {
@@ -44,7 +45,7 @@ const MyBookings = () => {
                    ></path>
                  </svg>
        
-                 <p className="text-xs font-medium">{booking.date}</p>
+                 <p className="text-xs font-medium">{format(new Date(booking.date), "MMMM do, yyyy 'at' h:mm a")}</p>
                </div>
              </div>
 
