@@ -78,6 +78,7 @@ const BookHall = () => {
         hallName: hall.hallName,
         hallContact: hall.contact,
         hallId: hall._id,
+        message: data.message,
         status: 'pending',
       };
 

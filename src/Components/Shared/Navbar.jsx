@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useUserInfo from "../../Hooks/useUserInfo";
+import admin from '../../assets/admin.png'
 
 const Navbar = () => {
 
@@ -116,7 +117,7 @@ const Navbar = () => {
             
             <NavLink to={`${userInfo.type==='hall' ? '/dashboardHall/home' : '/dashboardUser/home'}`}>
             <div className="h-10 w-10 overflow-hidden rounded-full ring-2 ring-orange-600 cursor-pointer ">
-            <img src={userInfo.image} alt=""/>
+            <img src={userInfo?.type==='hall' ?  admin : userInfo.image } className="bg-cover bg-center" alt=""/>
             </div>
             </NavLink>
 
