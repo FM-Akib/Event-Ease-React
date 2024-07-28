@@ -77,7 +77,8 @@ const BookHall = () => {
         options: data.options,
         hallName: hall.hallName,
         hallContact: hall.contact,
-        hallId: hall._id
+        hallId: hall._id,
+        status: 'pending',
       };
 
       

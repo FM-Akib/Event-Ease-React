@@ -1,3 +1,4 @@
+import BookNowSection from "../Components/Ui/BookNowSection";
 import Hero from "../Components/Ui/Hero";
 
 const Landing = () => {
@@ -8,6 +9,8 @@ const Landing = () => {
        <Hero/> 
        </div>
       </div>
+
+      <BookNowSection/>
     </div>
     );
 };
