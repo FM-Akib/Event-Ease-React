@@ -233,7 +233,7 @@ const EditHallProfile = () => {
                     <select {...register("AC", { required: true })} defaultValue={loggedHall?.facilities[0] ? loggedHall?.facilities[0] : '' }   className="w-full rounded border border-gray-300 bg-white py-2 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
                     <option value="" disabled selected>Select</option>
                     <option value="AC">Yes</option>
-                    <option value="">No</option>
+                    <option value="No">No</option>
                    </select>
                    {errors.AC && <span className="text-red-500">required</span>}
                    </div>
@@ -243,7 +243,7 @@ const EditHallProfile = () => {
                     <select {...register("Catering", { required: true })} defaultValue={loggedHall?.facilities[1] ? loggedHall?.facilities[1] : '' }  className="w-full rounded border border-gray-300 bg-white py-2 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
                     <option value="" disabled selected>Select</option>
                     <option value="Catering">Yes</option>
-                    <option value="">No</option>
+                    <option value="No">No</option>
                    </select>
                    {errors.Catering && <span className="text-red-500">required</span>}
                    </div>
@@ -252,7 +252,7 @@ const EditHallProfile = () => {
                     <select {...register("CCTV", { required: true })} defaultValue={loggedHall?.facilities[2] ? loggedHall?.facilities[2] : '' }   className="w-full rounded border border-gray-300 bg-white py-2 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
                     <option value="" disabled selected>Select</option>
                     <option value="CCTV">Yes</option>
-                    <option value="">No</option>
+                    <option value="No">No</option>
                    </select>
                    {errors.CCTV && <span className="text-red-500">required</span>}
                    </div>
@@ -261,7 +261,7 @@ const EditHallProfile = () => {
                     <select {...register("Cooking", { required: true })} defaultValue={loggedHall?.facilities[3] ? loggedHall?.facilities[3] : '' }   className="w-full rounded border border-gray-300 bg-white py-2 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
                     <option value="" disabled selected>Select</option>
                     <option value="Cooking">Yes</option>
-                    <option value="">No</option>
+                    <option value="No">No</option>
                    </select>
                    {errors.Cooking && <span className="text-red-500">required</span>}
                    </div>
@@ -270,7 +270,7 @@ const EditHallProfile = () => {
                     <select {...register("Generator", { required: true })} defaultValue={loggedHall?.facilities[4] ? loggedHall?.facilities[4] : '' }   className="w-full rounded border border-gray-300 bg-white py-2 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
                     <option value="" disabled selected>Select</option>
                     <option value="Generator">Yes</option>
-                    <option value="">No</option>
+                    <option value="No">No</option>
                    </select>
                    {errors.Generator && <span className="text-red-500">required</span>}
                    </div>
@@ -279,7 +279,7 @@ const EditHallProfile = () => {
                     <select {...register("Lift", { required: true })} defaultValue={loggedHall?.facilities[5] ? loggedHall?.facilities[5] : '' }   className="w-full rounded border border-gray-300 bg-white py-2 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
                     <option value="" disabled selected>Select</option>
                     <option value="Lift">Yes</option>
-                    <option value="">No</option>
+                    <option value="No">No</option>
                    </select>
                    {errors.Lift && <span className="text-red-500">required</span>}
                    </div>
@@ -288,7 +288,7 @@ const EditHallProfile = () => {
                     <select {...register("Wifi", { required: true })} defaultValue={loggedHall?.facilities[6] ? loggedHall?.facilities[6] : '' }   className="w-full rounded border border-gray-300 bg-white py-2 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
                     <option value="" disabled selected>Select</option>
                     <option value="Wifi">Yes</option>
-                    <option value="">No</option>
+                    <option value="No">No</option>
                    </select>
                    {errors.Wifi && <span className="text-red-500">required</span>}
                    </div>

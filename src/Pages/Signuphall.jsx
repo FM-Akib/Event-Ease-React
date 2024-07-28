@@ -170,7 +170,7 @@ const Signuphall = () => {
                 if(result.data.insertedId) {
                     setLoading(false);
                     notify_Signup()
-                    navigate('/',{replace: true})
+                    navigate('/dashboardHall/home',{replace: true})
                 }
             })
            
