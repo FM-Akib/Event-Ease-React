@@ -18,6 +18,7 @@ import HomeUser from "../Pages/UserDashboard/HomeUser";
 import MyBookings from "../Pages/UserDashboard/MyBookings";
 import Bookings from "../Pages/HallDashboard/Bookings";
 import InvitationCard from "../Pages/InvitationCard";
+import ErrorPage from "../Pages/ErrorPage";
 
 export const router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
         {
           path:'/card',
           element: <InvitationCard/>
+        },
+        {
+          path:'*',
+          element: <ErrorPage/>
         }
       ]
     },
