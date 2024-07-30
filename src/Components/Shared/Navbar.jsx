@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useUserInfo from "../../Hooks/useUserInfo";
 import admin from '../../assets/admin.png'
+import logo from '../../assets/EVENT EASE.png';
 
 const Navbar = () => {
 
@@ -34,7 +35,7 @@ const Navbar = () => {
           <div className="relative z-40">
             <NavLink to="/" aria-label="logo">
               <img
-                src="https://i.ibb.co/8xvPxSF/Event-Ease.png"
+                src={logo}
                 className="w-32 sm:w-36"
                 alt="logo"
                 width="144"

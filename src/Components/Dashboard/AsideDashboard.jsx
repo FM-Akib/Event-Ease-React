@@ -32,7 +32,7 @@ const AsideDashboard = () => {
      </div>
      
       <li className="border-[1px] py-1 px-1 rounded-lg bg-white/80"><Link to="/" className="flex items-center"><RiHome3Line  className="text-xl"/>Home</Link></li>
-      <li className="border-[1px] py-1 px-1 rounded-lg bg-white/80"><Link to="/halls" className="flex items-center"><MdDomain  className="text-xl"/>All Halls</Link></li>
+      <li className="border-[1px] py-1 px-1 rounded-lg bg-white/80"><Link to="/allhalls" className="flex items-center"><MdDomain  className="text-xl"/>All Halls</Link></li>
 
  
       </>
