@@ -1,5 +1,6 @@
 import BookNowSection from "../Components/Ui/BookNowSection";
 import Hero from "../Components/Ui/Hero";
+import InvitationSection from "../Components/Ui/InvitationSection";
 
 const Landing = () => {
     return (
@@ -12,6 +13,7 @@ const Landing = () => {
       </div>
 
       <BookNowSection/>
+      <InvitationSection/>
     </div>
     );
 };

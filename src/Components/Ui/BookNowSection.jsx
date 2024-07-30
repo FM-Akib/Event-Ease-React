@@ -4,7 +4,7 @@ import { MdOutlineAdsClick } from "react-icons/md";
 
 const BookNowSection = () => {
     return (
-      <div className=" text-gray-700 py-20">
+      <div className=" text-gray-700 py-20 mt-5">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex flex-col gap-8 lg:flex-row items-center">
                   <div className="lg:w-1/2">
