@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import toast from 'react-hot-toast';
+import { SiSimplelogin } from 'react-icons/si';
 
 
 const notify = () => toast.success('Login Successful!')
@@ -50,7 +51,8 @@ const Login = () => {
                         <div className="mx-auto h-full sm:w-3/12">
                             <div className="m-auto py-12">
                                 <div className="mt-12 rounded-3xl border bg-white/60 bg-cover -mx-6 sm:-mx-10 p-8 sm:p-10">
-                                    <h3 className="text-2xl font-semibold text-gray-700 text-center">Login to your account</h3>
+                                    <h3 className="text-2xl font-semibold text-gray-700 text-center flex items-center justify-center gap-2"><SiSimplelogin className="text-3xl" />
+                                    Login to your account</h3>
                                     <div className="mt-12 flex flex-wrap">
                                         <button onClick={handleGoogleSignin} className="w-full h-11 rounded-xl border border-gray-300/75 bg-white px-6 transition active:bg-gray-50">
                                             <div className="w-full mx-auto flex items-center justify-center space-x-4">

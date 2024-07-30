@@ -82,7 +82,7 @@ const Navbar = () => {
                 </li>
                 <li className="max-w-max">
                   <NavLink
-                    to="/cart"
+                    to="/card"
                     className={({ isActive }) =>
                       isActive
                         ? " border-yellow-400 border-2 rounded-tr-lg rounded-bl-lg text-yellow-800 block px-3"
@@ -91,7 +91,7 @@ const Navbar = () => {
                   >
                     <div className="relative before:absolute before:-bottom-2 md:before:-bottom-7 before:w-full before:h-0.5 before:mx-auto before:mt-auto before:rounded-full transition group-hover:before:scale-x-100">
                       <span className="transition group-hover:text-cyan-700">
-                        Cart
+                        Make Card
                       </span>
                     </div>
                   </NavLink>
@@ -117,7 +117,7 @@ const Navbar = () => {
             user ? <>
             
             <NavLink to={`${userInfo.type==='hall' ? '/dashboardHall/home' : '/dashboardUser/home'}`}>
-            <div className="h-10 w-10 overflow-hidden rounded-full ring-2 ring-orange-600 cursor-pointer ">
+            <div className="h-10 w-10 overflow-hidden rounded-full ring-8 ring-slate-100 cursor-pointer ">
             <img src={userInfo?.type==='hall' ?  admin : userInfo.image } className="bg-cover bg-center" alt=""/>
             </div>
             </NavLink>

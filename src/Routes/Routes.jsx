@@ -17,6 +17,7 @@ import DashboardUser from "../Layout/DashboardUser";
 import HomeUser from "../Pages/UserDashboard/HomeUser";
 import MyBookings from "../Pages/UserDashboard/MyBookings";
 import Bookings from "../Pages/HallDashboard/Bookings";
+import InvitationCard from "../Pages/InvitationCard";
 
 export const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
         {
           path:'/signuphall',
           element: <Signuphall/>
+        },
+        {
+          path:'/card',
+          element: <InvitationCard/>
         }
       ]
     },

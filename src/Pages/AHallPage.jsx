@@ -1,7 +1,7 @@
-import { IoLocationOutline } from "react-icons/io5";
+import { IoArrowForwardCircleOutline, IoLocationOutline } from "react-icons/io5";
 import { RiCommunityLine } from "react-icons/ri";
 import { PiShieldStarLight } from "react-icons/pi";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Capacity from "../Components/Ui/Capacity";
 import Facilities from "../Components/Ui/Facilities";
 import Catering from "../Components/Ui/Catering";
@@ -72,7 +72,17 @@ const AHallPage = () => {
           </div>
 
           {/* Sidebar */}
-          <div className="md:col-span-3">
+          <div className="md:col-span-3 ">
+            <div className=" px-5">
+          <Link to={`/bookhall/${ahall._id}`} >  
+              <button className=" flex h-11 bg-emerald-700 hover:bg-emerald-600 rounded-md w-full items-center justify-center px-6 ">
+                <span className=" text-base font-semibold text-white flex items-center">
+                  Book Now <IoArrowForwardCircleOutline className="ml-1 text-xl" />
+                </span>
+              </button>
+            </Link>
+            </div>
+
             <Facilities ahall={ahall} />
             <Catering hall={ahall} />
             <Pricing hall={ahall} />
