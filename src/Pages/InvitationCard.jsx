@@ -8,6 +8,11 @@ import card2 from '../assets/invitation2.png';
 import card3 from '../assets/Invitation3.png';
 import card4 from '../assets/Invitation4.png';
 import card5 from '../assets/Invitation5.png';
+import card6 from '../assets/Invitation6.png';
+import card7 from '../assets/Invitation7.png';
+import card8 from '../assets/Invitation8.png';
+import card9 from '../assets/Invitation9.png';
+import card10 from '../assets/Invitation10.png';
 
 const InvitationCard = () => {
   const [groomName, setGroomName] = useState('');
@@ -17,13 +22,13 @@ const InvitationCard = () => {
   const [selectedBg, setSelectedBg] = useState(card1);
   const componentRef = useRef();
 
-  const backgrounds = [card1, card2, card3, card4, card5];
+  const backgrounds = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10];
 
   const handleGeneratePdf = async () => {
     const dataUrl = await toPng(componentRef.current);
     const pdf = new jsPDF('p', 'mm', 'a4');
     pdf.addImage(dataUrl, 'PNG', 0, 0, 210, 297); // Adjust size to fit A4
-    pdf.save('download.pdf');
+    pdf.save('Invitation.pdf');
   };
 
   const dateParts = date.split(' ');
@@ -76,6 +81,7 @@ const InvitationCard = () => {
                   type="text"
                   className="w-full p-2 border mb-4 rounded-md"
                   placeholder="8AM Sunday 18 August 2024"
+                  defaultValue="8AM Sunday 18 August 2024"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
                 />
@@ -144,7 +150,7 @@ const InvitationCard = () => {
               </span>
               <span className={`${dateParts[0]===''?'hidden':'block'}`}>to {dateParts[0]}</span>
             </p>
-            <p className="bg-orange-100 px-4 rounded-sm">{address}</p>
+            <p className="bg-orange-100 px-4 rounded-sm w-3/6 text-center py-1">{address}</p>
           </div>
         </div>
       </div>
