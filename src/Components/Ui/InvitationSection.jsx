@@ -9,7 +9,7 @@ const InvitationSection = () => {
         <div className="grid md:grid-cols-3 rounded-md gap-6 min-h-[164px] py-8 p-16 bg-gradient-to-r from-orange-700 to-orange-400 font-sans overflow-hidden">
         <div className="md:col-span-2">
           <h1 className="text-3xl font-bold text-white">Make Invitation Card!</h1>
-          <p className="text-base text-gray-200 mt-4">Easily make your invitation card.</p>
+          <p className="text-base text-gray-200 mt-4">Design & create your own invitation cards using our wide selection of templates for weddings.</p>
   
          <Link to="/card">
           <button type="button"

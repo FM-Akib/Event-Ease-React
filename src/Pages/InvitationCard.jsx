@@ -132,7 +132,7 @@ const InvitationCard = () => {
           <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-700 gap-3 p-4">
             <div className="flex flex-col justify-center items-center mb-4">
               <h2 className="text-3xl font-bold">{groomName}</h2>
-              <span className="text-5xl mx-2 text-orange-400 font-extrabold">&</span>
+              <span className={`${brideName===''? 'hidden':'block'}  text-5xl mx-2 text-orange-400 font-extrabold`}>&</span>
               <h2 className="text-3xl font-bold">{brideName}</h2>
             </div>
             <p className="mb-4 flex items-center gap-2">
@@ -142,7 +142,7 @@ const InvitationCard = () => {
                 <span className="font-bold text-4xl">{dateParts[2]}</span>
                 <span className="">{dateParts[4]}</span>
               </span>
-              <span>to {dateParts[0]}</span>
+              <span className={`${dateParts[0]===''?'hidden':'block'}`}>to {dateParts[0]}</span>
             </p>
             <p className="bg-orange-100 px-4 rounded-sm">{address}</p>
           </div>
