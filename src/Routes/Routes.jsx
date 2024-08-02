@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
           path: "/hall/:id",
           element: <AHallPage/>,
           loader: async ({ params }) => {
-            const response = await fetch(`http://localhost:5000/halls/${params.id}`);
+            const response = await fetch(`https://event-ease-server-ten.vercel.app/halls/${params.id}`);
             return response.json();
           }
         },
@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
           path: "/bookhall/:id",
           element: <BookHall/>,
           loader: async ({ params }) => {
-            const response = await fetch(`http://localhost:5000/halls/${params.id}`);
+            const response = await fetch(`https://event-ease-server-ten.vercel.app/halls/${params.id}`);
             return response.json();
           }
         },

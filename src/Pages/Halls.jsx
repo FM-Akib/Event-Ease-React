@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 const Halls = () => {
   
-  const { halls } = useAllHalls();
+  const { halls,isLoading } = useAllHalls();
   const [filterHalls, setFilterHalls] = useState([]);
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -20,12 +20,15 @@ const Halls = () => {
   const form2 = useForm();
   const form3 = useForm();
 
+ 
+
   useEffect(() => {
     if (halls) {
       setFilterHalls(halls);
     }
   }, [halls]);
 
+   console.log(halls)
   // Submission handlers for each form
   const onSubmitForm1 = (data) => {
     setLoading(true);
@@ -56,7 +59,13 @@ const Halls = () => {
     hall.area.toLowerCase().includes(inputValue2.toLowerCase())
   );
 
-
+ if(isLoading) return <div className="flex justify-center items-center h-screen">
+ <div className="relative inline-flex">
+     <div className="w-8 h-8 bg-orange-500 rounded-full"></div>
+     <div className="w-8 h-8 bg-orange-500 rounded-full absolute top-0 left-0 animate-ping"></div>
+     <div className="w-8 h-8 bg-orange-500 rounded-full absolute top-0 left-0 animate-pulse"></div>
+ </div>
+</div>
     return (
      
        <div className="py-12">
