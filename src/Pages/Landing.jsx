@@ -1,3 +1,4 @@
+import Footer from "../Components/Shared/Footer";
 import BookNowSection from "../Components/Ui/BookNowSection";
 import Hero from "../Components/Ui/Hero";
 import InvitationSection from "../Components/Ui/InvitationSection";
@@ -14,6 +15,9 @@ const Landing = () => {
 
       <BookNowSection/>
       <InvitationSection/>
+
+
+      <Footer/>
     </div>
     );
 };
