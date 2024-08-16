@@ -4,6 +4,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import useUserInfo from "../../Hooks/useUserInfo";
 import admin from '../../assets/admin.png'
 import logo from '../../assets/EVENT EASE.png';
+import { FaSignInAlt, FaSignOutAlt, FaUserPlus } from "react-icons/fa";
 
 const Navbar = () => {
 
@@ -64,6 +65,7 @@ const Navbar = () => {
                     </div>
                   </NavLink>
                 </li>
+
                 <li className="max-w-max">
                   <NavLink
                     to="/allhalls"
@@ -80,6 +82,7 @@ const Navbar = () => {
                     </div>
                   </NavLink>
                 </li>
+
                 <li className="max-w-max">
                   <NavLink
                     to="/card"
@@ -96,6 +99,24 @@ const Navbar = () => {
                     </div>
                   </NavLink>
                 </li>
+
+                <li className="max-w-max">
+                  <NavLink
+                    to="/vehicle"
+                    className={({ isActive }) =>
+                      isActive
+                        ? " border-yellow-400 border-2 rounded-tr-lg rounded-bl-lg text-yellow-800 block px-3"
+                        : "text-gray-600 block md:px-3 group"
+                    }
+                  >
+                    <div className="relative before:absolute before:-bottom-2 md:before:-bottom-7 before:w-full before:h-0.5 before:mx-auto before:mt-auto before:rounded-full transition group-hover:before:scale-x-100">
+                      <span className="transition group-hover:text-cyan-700">
+                        Vehicle
+                      </span>
+                    </div>
+                  </NavLink>
+                </li>
+
               </ul>
               <div className="flex sm:hidden pt-4 w-full">
                 <NavLink to="/login">
@@ -116,39 +137,59 @@ const Navbar = () => {
           {
             user ? <>
             
-            <NavLink to={`${userInfo.type==='hall' ? '/dashboardHall/home' : '/dashboardUser/home'}`}>
-            <div className="h-10 w-10 overflow-hidden rounded-full ring-8 ring-slate-100 cursor-pointer ">
-            <img src={userInfo?.type==='hall' ?  admin : userInfo.image } className="bg-cover bg-center" alt=""/>
-            </div>
+            <NavLink to={`${userInfo.type === 'hall' ? '/dashboardHall/home' : '/dashboardUser/home'}`}>
+              <div className="h-10 w-10 overflow-hidden rounded-full ring-8 transition-all 
+                              ring-[#FFB347] hover:ring-[#FF8C00] active:ring-[#FF7F50] cursor-pointer">
+                <img src={userInfo?.type === 'hall' ? admin : userInfo.image} 
+                    className="bg-cover bg-center transform hover:scale-105 transition-transform" 
+                    alt="" />
+              </div>
             </NavLink>
 
             <button
-                onClick={handleLogout}
-                type="button"
-                className="hidden sm:block w-full py-3 px-6 text-center rounded-md transition bg-gray-600 hover:bg-cyan-500 active:bg-cyan-600 focus:bg-cyan-800 sm:w-max"
-              >
-                <span className="block text-white text-sm">Logout</span>
+              onClick={handleLogout}
+              type="button"
+              className="hidden sm:flex items-center justify-center w-full py-3 px-6 text-center rounded-md transition 
+                        bg-gradient-to-r from-[#555555] to-[#777777] hover:from-[#777777] hover:to-[#999999] 
+                        active:from-[#555555] active:to-[#444444] focus:ring-2 focus:ring-[#999999] 
+                        sm:w-max shadow-md hover:shadow-lg focus:shadow-md active:shadow-sm 
+                        transform hover:-translate-y-1 active:translate-y-0.5"
+            >
+              <FaSignOutAlt className="mr-2 text-[#FEFBE8] text-lg" />
+              <span className="block text-[#FEFBE8] text-base font-semibold">Logout</span>
             </button>
 
             </>: <>
-            
+
             <NavLink to="/login">
               <button
                 type="button"
-                className="hidden sm:block w-full py-3 px-6 text-center rounded-md transition bg-orange-600 hover:bg-cyan-500 active:bg-cyan-600 focus:bg-cyan-800 sm:w-max"
+                className="hidden sm:flex items-center justify-center w-full py-3 px-6 text-center rounded-md transition 
+                          bg-gradient-to-r from-[#FF8C00] to-[#FFA500] hover:from-[#FFA500] hover:to-[#FFB347] 
+                          active:from-[#FF8C00] active:to-[#FF7F50] focus:ring-[#FFB347] 
+                          sm:w-max  hover:shadow-lg focus:shadow-md active:shadow-sm 
+                          transform hover:-translate-y-1 active:translate-y-0.5"
               >
-                <span className="block text-white text-sm">Login</span>
+                <FaSignInAlt className="mr-2 text-[#FEFBE8] text-lg" />
+                <span className="block text-[#FEFBE8] text-base font-semibold">Login</span>
               </button>
             </NavLink>
 
             <NavLink to="/signup">
               <button
                 type="button"
-                className="hidden sm:block w-full py-3 px-6 text-center rounded-md transition bg-emerald-600 hover:bg-cyan-500 active:bg-cyan-600 focus:bg-cyan-800 sm:w-max"
+                className="hidden sm:flex items-center justify-center w-full py-3 px-6 text-center rounded-md transition 
+                          bg-gradient-to-r from-[#FF4500] to-[#FF6347] hover:from-[#FF6347] hover:to-[#FF7F50] 
+                          active:from-[#FF4500] active:to-[#FF4500]  focus:ring-[#FF7F50] 
+                          sm:w-max  hover:shadow-lg focus:shadow-md active:shadow-sm 
+                          transform hover:-translate-y-1 active:translate-y-0.5"
               >
-                <span className="block text-white text-sm">Signup</span>
+                <FaUserPlus className="mr-2 text-[#FEFBE8] text-lg" />
+                <span className="block text-[#FEFBE8] text-base font-semibold">Signup</span>
               </button>
             </NavLink>
+            
+
             </>
           }
 
