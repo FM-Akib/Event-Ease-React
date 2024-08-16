@@ -150,7 +150,7 @@ const InvitationCard = () => {
               </span>
               <span className={`${dateParts[0]===''?'hidden':'block'}`}>to {dateParts[0]}</span>
             </p>
-            <p className="bg-orange-100 px-4 rounded-sm w-3/6 text-center py-1">{address}</p>
+            <p className={`${address===''? 'hidden':'block'} bg-orange-100 px-4 rounded-sm w-3/6 text-center py-1`}>{address}</p>
           </div>
         </div>
       </div>

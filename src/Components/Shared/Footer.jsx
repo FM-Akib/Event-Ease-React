@@ -3,7 +3,7 @@ import logo from '../../assets/EVENT EASE.png'
 
 const Footer = () => {
     return (
-        <footer className="w-full bg-orange-100  py-16 border-t-2">
+        <footer className="w-full bg-orange-100  py-16 shadow-inner">
         <div className="md:px-12 lg:px-28">
           <div className="container m-auto space-y-6 text-gray-600 ">
             <img src={logo} alt="logo" className="m-auto w-40" />

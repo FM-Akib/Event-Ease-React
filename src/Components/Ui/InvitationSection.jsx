@@ -1,6 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import img1 from '../../assets/InvitationSection.jpg'
+import { PiArrowCircleRightFill } from 'react-icons/pi';
 
 const InvitationSection = () => {
     return (
@@ -13,8 +14,9 @@ const InvitationSection = () => {
   
          <Link to="/card">
           <button type="button"
-            className="py-3 px-6 text-sm font-semibold bg-white text-orange-600 hover:bg-slate-100 rounded-md mt-8">Get
-            Started</button></Link>
+            className="py-3 px-6 text-sm font-semibold bg-white text-orange-600 hover:bg-slate-100 rounded-md mt-8 flex items-center gap-1">Get
+            Started <PiArrowCircleRightFill className="text-xl" />
+            </button></Link>
           </div>
   
         <div className="relative max-md:hidden">
