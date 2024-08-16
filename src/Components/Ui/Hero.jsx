@@ -9,11 +9,11 @@ import '../../App.css'
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import img1 from '../../assets/Hero1.png';
-import img2 from '../../assets/Hero2.png';
-import img3 from '../../assets/Hero3.png';
-import img4 from '../../assets/Hero4.png';
-import img5 from '../../assets/Hero5.png';
+import img1 from '../../assets/Hero1.jpg';
+import img2 from '../../assets/Hero2.jpg';
+import img3 from '../../assets/Hero3.jpg';
+import img4 from '../../assets/Hero4.jpg';
+import img5 from '../../assets/Hero5.jpg';
 
 const Hero = () => {
     return (

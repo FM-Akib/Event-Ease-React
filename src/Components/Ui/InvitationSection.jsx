@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import img1 from '../../assets/Invitation1.png'
+import img1 from '../../assets/InvitationSection.jpg'
 
 const InvitationSection = () => {
     return (
