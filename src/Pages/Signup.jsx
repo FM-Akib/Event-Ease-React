@@ -7,6 +7,9 @@ import useAxiosPublic from '../Hooks/useAxiosPublic';
 import toast from 'react-hot-toast';
 import { FaBuildingWheat } from "react-icons/fa6";
 
+import bg from '../assets/pattern.jpg'
+import signupImg from '../assets/signup.jpg'
+
 
 const notify_Signup = () => toast.success('Signup Successful!')
 
@@ -101,7 +104,7 @@ const Signup = () => {
 
   return (
 
-    <div className="md:grid grid-cols-10 p-2 md:p-14 md:pt-2 bg-[url(https://i.ibb.co/J2DzSx4/watercolor-paper-texture.jpg)] bg-cover relative">
+    <div className="md:grid grid-cols-10 p-2 md:p-14 md:pt-2  bg-cover relative" style={{backgroundImage: `url(${bg})`}}>
 
 
    <div className={`${loading? 'block':'hidden'}   absolute bg-white bg-opacity-60 z-10 h-full w-full flex items-center justify-center `}>
@@ -220,7 +223,7 @@ const Signup = () => {
             Make easy to booking event hall
             </p>
             </div> 
-            <img src="https://i.ibb.co/c6MmyWF/abby-savage.jpg" className="rounded-lg" alt="" />  
+            <img src={signupImg} className="rounded-lg" alt="" />  
             </div>
             
         </div>

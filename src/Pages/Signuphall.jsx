@@ -7,6 +7,9 @@ import useAxiosPublic from '../Hooks/useAxiosPublic';
 import toast from 'react-hot-toast';
 import { FaRegCircleUser } from "react-icons/fa6";
 
+import signupHall from '../assets/signup.jpg'
+import signupHallbg from '../assets/pattern2.jpg'
+
 
 const notify_Signup = () => toast.success('Signup Successful!')
  const image_hosting_key= import.meta.env.VITE_apiKey_Image;
@@ -185,7 +188,7 @@ const Signuphall = () => {
 
   return (
 
-    <div className="md:grid grid-cols-10 p-2 md:p-14 md:pt-2 bg-[url(https://i.ibb.co/tc5HwLj/pattern.jpg)] bg-cover relative ">
+    <div className="md:grid grid-cols-10 p-2 md:p-14 md:pt-2 bg-cover relative " style={{backgroundImage: `url(${signupHallbg})`}}>
 
 
   <div className={`${loading? 'block':'hidden'}   absolute bg-white bg-opacity-60 z-10 h-full w-full flex items-center justify-center `}>
@@ -202,14 +205,14 @@ const Signuphall = () => {
     </div>
 
 
-     <div className="md:rounded-r-md    col-span-5 bg-white/50 p-10 flex flex-col items-center justify-start">
+     <div className="md:rounded-r-md col-span-5 bg-white/50 p-10 flex flex-col items-center justify-start">
      <div className="">
      <h1 className="text-2xl text-center font-extrabold tracking-tight text-slate-900 sm:text-3xl">Event <span className="text-orange-400"> Ease</span></h1>
      <p className="mt-2 mb-10 text-sm text-center font-semibold text-gray-400">
      Register your hall
      </p>
      </div> 
-     <img src="https://i.ibb.co/c6MmyWF/abby-savage.jpg" className="rounded-lg" alt="" />  
+     <img src={signupHall} className="rounded-lg" alt="" />  
      </div>
 
 

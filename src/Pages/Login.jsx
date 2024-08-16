@@ -6,6 +6,8 @@ import { AuthContext } from '../Providers/AuthProvider';
 import toast from 'react-hot-toast';
 import { SiSimplelogin } from 'react-icons/si';
 
+import bg from '../assets/pattern.jpg'
+
 
 const notify = () => toast.success('Login Successful!')
 
@@ -42,11 +44,11 @@ const Login = () => {
                 console.log(error.message);
             });
     }
-    // https://i.ibb.co/c6MmyWF/abby-savage.jpg
+    
     return (
         <>
             <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
-                <div className="bg-[url(https://i.ibb.co/J2DzSx4/watercolor-paper-texture.jpg)] bg-cover bg-center h-screen w-full">
+                <div className=" bg-cover bg-center h-screen w-full" style={{ backgroundImage: `url(${bg})` }}>
                     <div className="m-auto xl:container px-12 sm:px-0 mx-auto">
                         <div className="mx-auto h-full sm:w-3/12">
                             <div className="m-auto py-12">
