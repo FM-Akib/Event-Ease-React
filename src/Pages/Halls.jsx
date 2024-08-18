@@ -19,16 +19,20 @@ const Halls = () => {
   const form1 = useForm();
   const form2 = useForm();
   const form3 = useForm();
-
  
 
   useEffect(() => {
-    if (halls) {
+    if (halls && halls.length > 0 ) {
       setFilterHalls(halls);
     }
   }, [halls]);
+  console.log(halls);
+  if (!Array.isArray(halls)) {
+    console.error("Halls is not an array:", halls);
+    return <div>Error: Unexpected data format</div>;
+  }  
 
-   console.log(halls)
+   
   // Submission handlers for each form
   const onSubmitForm1 = (data) => {
     setLoading(true);
@@ -59,13 +63,13 @@ const Halls = () => {
     hall?.area?.toLowerCase()?.includes(inputValue2.toLowerCase())
   );
 
- if(isLoading) return <div className="flex justify-center items-center h-screen">
+ if(isLoading) return (<div className="flex justify-center items-center h-screen">
                       <div className="relative inline-flex">
                           <div className="w-8 h-8 bg-orange-500 rounded-full"></div>
                           <div className="w-8 h-8 bg-orange-500 rounded-full absolute top-0 left-0 animate-ping"></div>
                           <div className="w-8 h-8 bg-orange-500 rounded-full absolute top-0 left-0 animate-pulse"></div>
                       </div>
-                      </div>
+                      </div>)
     return (
      
        <div className="py-12">
@@ -187,11 +191,11 @@ const Halls = () => {
       <div className="flex justify-center"> <span className="loading loading-bars loading-lg text-red-500 flex justify-center"></span></div>
       </div>
     { 
-            filterHalls?.map((hall) => (
+           halls && filterHalls.length>0 && filterHalls?.map((hall) => (
                 <div key={hall._id} className="mb-5   group relative -mx-4 sm:-mx-8 p-6 sm:p-8 rounded-3xl bg-white  border border-transparent hover:border-gray-100  shadow-2xl shadow-transparent hover:shadow-gray-600/10 sm:gap-8 sm:flex transition duration-300 hover:z-10">
                 <div className="sm:w-2/6 rounded-3xl overflow-hidden transition-all duration-500 group-hover:rounded-xl">
                   <img
-                    src={hall.images[0]}
+                    src={hall?.images[0]}
                     alt="art cover"
                     loading="lazy"
                     width={1000}

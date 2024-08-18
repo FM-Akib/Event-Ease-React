@@ -13,6 +13,10 @@ const useAllHalls = () => {
     },
   });
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  
 
   if (error) return 'An error has occurred: ' + error.message
  
