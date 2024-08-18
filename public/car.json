@@ -1,0 +1,103 @@
+[
+    {
+      "driverName": "Abdul Karim",
+      "contact": "+8801712345678",
+      "vehicleName": "Toyota Corolla",
+      "guestCapacity": 4,
+      "vehicleModel": "2020",
+      "vehicleImg": "https://i.ibb.co/MNjgNWg/2020-toyota-corolla-sedan.jpg",
+      "driverImg": "https://i.ibb.co/tcz6rs6/driver-hire-min.webp",
+      "type": "car"
+    },
+    {
+      "driverName": "Rashid Ahmed",
+      "contact": "+8801912345678",
+      "vehicleName": "Nissan X-Trail",
+      "guestCapacity": 7,
+      "vehicleModel": "2019",
+      "vehicleImg": "https://i.ibb.co/dLDbWpL/Nissan-X-Trail-7.jpg",
+      "driverImg": "https://i.ibb.co/tcz6rs6/driver-hire-min.webp",
+      "type": "car"
+    },
+    {
+      "driverName": "Hasina Begum",
+      "contact": "+8801812345678",
+      "vehicleName": "Honda CR-V",
+      "guestCapacity": 5,
+      "vehicleModel": "2021",
+      "vehicleImg": "https://i.ibb.co/Xt48vkk/2019-Honda-CR-V.jpg",
+      "driverImg": "https://i.ibb.co/tcz6rs6/driver-hire-min.webp",
+      "type": "car"
+    },
+    {
+      "driverName": "Kamal Hossain",
+      "contact": "+8801612345678",
+      "vehicleName": "Suzuki Wagon R",
+      "guestCapacity": 4,
+      "vehicleModel": "2018",
+      "vehicleImg": "https://i.ibb.co/R60QnXW/cover-image.jpg",
+      "driverImg": "https://i.ibb.co/tcz6rs6/driver-hire-min.webp",
+      "type": "car"
+    },
+    {
+      "driverName": "Shahadat Hossain",
+      "contact": "+8801512345678",
+      "vehicleName": "Mitsubishi Pajero",
+      "guestCapacity": 7,
+      "vehicleModel": "2022",
+      "vehicleImg": "https://i.ibb.co/N2T3JsM/Mitsubishi-Pajero.jpg",
+      "driverImg": "https://i.ibb.co/tcz6rs6/driver-hire-min.webp",
+      "type": "car"
+    },
+    {
+      "driverName": "Rubel Mia",
+      "contact": "+8801712345679",
+      "vehicleName": "Hino Bus",
+      "guestCapacity": 45,
+      "vehicleModel": "2017",
+      "vehicleImg": "https://i.ibb.co/d0BKms9/SN.jpg",
+      "driverImg": "https://i.ibb.co/tcz6rs6/driver-hire-min.webp",
+      "type": "bus"
+    },
+    {
+      "driverName": "Rumana Akter",
+      "contact": "+8801912345679",
+      "vehicleName": "Hyundai H-1",
+      "guestCapacity": 12,
+      "vehicleModel": "2020",
+      "vehicleImg": "https://i.ibb.co/VwBrkS9/hq720.jpg",
+      "driverImg": "https://i.ibb.co/tcz6rs6/driver-hire-min.webp",
+      "type": "van"
+    },
+    {
+      "driverName": "Bashir Uddin",
+      "contact": "+8801812345679",
+      "vehicleName": "Scania Bus",
+      "guestCapacity": 50,
+      "vehicleModel": "2019",
+      "vehicleImg": "https://i.ibb.co/DrzsXhg/bus.jpg",
+      "driverImg": "https://i.ibb.co/tcz6rs6/driver-hire-min.webp",
+      "type": "bus"
+    },
+    {
+      "driverName": "Mithu Chowdhury",
+      "contact": "+8801612345679",
+      "vehicleName": "Ford Ranger",
+      "guestCapacity": 5,
+      "vehicleModel": "2021",
+      "vehicleImg": "https://i.ibb.co/b7DxfwV/carr.png",
+      "driverImg": "https://i.ibb.co/tcz6rs6/driver-hire-min.webp",
+      "type": "truck"
+    },
+    {
+      "driverName": "Jahangir Alam",
+      "contact": "+8801512345679",
+      "vehicleName": "Toyota Hiace",
+      "guestCapacity": 10,
+      "vehicleModel": "2022",
+      "vehicleImg": "https://i.ibb.co/56fRsDW/Toyota-Hiace.jpg",
+      "driverImg": "https://i.ibb.co/tcz6rs6/driver-hire-min.webp",
+      "type": "van"
+    }
+  ]
+  

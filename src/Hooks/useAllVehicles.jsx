@@ -1,22 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./useAxiosPublic";
 
-const useAllHalls = () => {
+const useAllVehicles = () => {
   
   const axiosPublic = useAxiosPublic();
   
-  const { isLoading, isError, data: halls = [], error, refetch } = useQuery({
+  const { isLoading, isError, data: vehicles = [], error, refetch } = useQuery({
     queryKey: ['halls'],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/halls`);
+      const res = await axiosPublic.get(`/vehicles`);
       return res?.data;
     },
   });
-
-
+  if (isLoading) return 'Loading...'
   if (error) return 'An error has occurred: ' + error.message
  
-  return { isLoading, isError, halls, error, refetch };
+  return { isLoading, isError,vehicles, error, refetch };
 };
 
-export default useAllHalls;
+export default useAllVehicles;

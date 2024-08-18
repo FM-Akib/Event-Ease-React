@@ -52,11 +52,11 @@ const Halls = () => {
   };
 
   const filteredSuggestionsCity = halls?.filter((hall) =>
-    hall.city.toLowerCase().includes(inputValue.toLowerCase())
+    hall?.city?.toLowerCase()?.includes(inputValue.toLowerCase())
   );
   
   const filteredSuggestionsArea = halls?.filter((hall) =>
-    hall.area.toLowerCase().includes(inputValue2.toLowerCase())
+    hall?.area?.toLowerCase()?.includes(inputValue2.toLowerCase())
   );
 
  if(isLoading) return <div className="flex justify-center items-center h-screen">

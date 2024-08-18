@@ -9,7 +9,7 @@ const VehicleHead = () => {
                 <h1 className="text-2xl font-bold text-gray-700 sm:text-3xl">Wedding Vehicle</h1>
 
                 <p className="mt-1.5 text-sm text-gray-500">
-                Book suitable vehicle for wedding 
+                Find suitable vehicle for wedding 
                 </p>
             </div>
 
