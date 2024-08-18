@@ -6,10 +6,13 @@ const Vehicle = () => {
   console.log(vehicles)
   
   if(isLoading){
-    <div className="flex flex-row space-x-4">
-    <div className="w-12 h-12 rounded-full animate-spin
-    border-y-8 border-solid border-orange-500 border-t-transparent"></div>
-    </div>
+                <div className="flex justify-center items-center h-screen">
+                <div className="relative inline-flex">
+                    <div className="w-8 h-8 bg-orange-500 rounded-full"></div>
+                    <div className="w-8 h-8 bg-orange-500 rounded-full absolute top-0 left-0 animate-ping"></div>
+                    <div className="w-8 h-8 bg-orange-500 rounded-full absolute top-0 left-0 animate-pulse"></div>
+                </div>
+                </div>
   }
 
     return (
