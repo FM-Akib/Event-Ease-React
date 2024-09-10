@@ -206,8 +206,8 @@ const Halls = () => {
                 
                 <div className="sm:p-2 sm:pl-0 sm:w-4/6">
                   <span className="mt-4 mb-2  font-medium text-gray-400  flex items-center justify-between sm:mt-0"> 
-                    <span className="flex items-center"> <IoLocationOutline className="mr-1" />{hall.location} </span> 
-                    <span className="flex items-center"> <GrStatusGood className="mr-1" />{hall.type} </span>
+                    <span className="flex items-center"> <IoLocationOutline className="mr-1 hidden sm:block" />{hall.location} </span> 
+                    <span className="flex items-center"> <GrStatusGood className="mr-1 hidden sm:block" />{hall.type} </span>
                     </span>
                   <h3 className="text-2xl font-semibold text-gray-800 flex items-center justify-between">
                    {hall.hallName}  <span> <Link to={`/hall/${hall._id}`}><button className="text-sm bg-orange-600 hover:bg-orange-700 text-white px-3 py-2 rounded-md flex items-center "> View <FaCircleArrowRight className="ml-1" /></button></Link>  </span>
@@ -218,7 +218,7 @@ const Halls = () => {
       
                   <div className="flex gap-4 flex-wrap">
                     {
-                        hall.facilities.map((afacility,i)=><span  key={i} className="px-3 py-1 rounded-full border border-gray-200 text-sm font-medium text-orange-500 transition duration-300 hover:border-transparent hover:bg-orange-500 hover:text-white  ">
+                        hall.facilities.map((afacility,i)=><span  key={i} className={` ${afacility ? 'px-3 py-1 rounded-full border border-gray-200 text-sm font-medium text-orange-500 transition duration-300 hover:border-transparent hover:bg-orange-500 hover:text-white ': 'hidden'} `}>
                             {afacility}
                           </span> )
                     }
