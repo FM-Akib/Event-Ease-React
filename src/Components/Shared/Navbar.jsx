@@ -119,7 +119,7 @@ const Navbar = () => {
 
               </ul>
               <div className="flex sm:hidden pt-4 w-full">
-                <NavLink to="/login">
+                {/* <NavLink to="/login">
                   <button
                     type="button"
                     title="Start buying"
@@ -127,7 +127,21 @@ const Navbar = () => {
                   >
                     <span className="block text-white text-sm">Login</span>
                   </button>
-                </NavLink>
+                </NavLink> */}
+
+                <NavLink to="/login">
+              <button
+                type="button"
+                className="flex items-center justify-center w-full py-3 px-6 text-center rounded-md transition 
+                          bg-gradient-to-r from-[#FF8C00] to-[#FFA500] hover:from-[#FFA500] hover:to-[#FFB347] 
+                          active:from-[#FF8C00] active:to-[#FF7F50] focus:ring-[#FFB347] 
+                          sm:w-max  hover:shadow-lg focus:shadow-md active:shadow-sm 
+                          transform hover:-translate-y-1 active:translate-y-0.5"
+              >
+                <FaSignInAlt className="mr-2 text-[#FEFBE8] text-lg" />
+                <span className="block text-[#FEFBE8] text-base font-semibold">Login</span>
+              </button>
+            </NavLink>
               </div>
             </div>
           </div>

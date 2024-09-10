@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 const Halls = () => {
   
-  const { halls,isLoading } = useAllHalls();
+  const { halls=[],isLoading } = useAllHalls();
   const [filterHalls, setFilterHalls] = useState([]);
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
