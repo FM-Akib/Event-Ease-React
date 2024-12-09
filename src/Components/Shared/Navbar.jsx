@@ -5,6 +5,8 @@ import useUserInfo from "../../Hooks/useUserInfo";
 import admin from '../../assets/admin.png';
 import logo from '../../assets/EVENT EASE.png';
 import { FaSignInAlt, FaSignOutAlt, FaUserPlus } from "react-icons/fa";
+import toast from "react-hot-toast";
+const notifyLogout = () => toast.success('Logout Successful!')
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -13,10 +15,11 @@ const Navbar = () => {
 
   // State to manage the mobile menu
   const [isNavOpen, setIsNavOpen] = useState(false);
-
   const handleLogout = () => {
     logOut()
-      .then(() => {})
+      .then(() => {
+        notifyLogout();
+      })
       .catch((err) => console.log(err));
     navigate('/');
   };
@@ -125,7 +128,11 @@ const Navbar = () => {
                     <img
                       src={userInfo?.type === "hall" ? admin : userInfo.image}
                       className="bg-cover bg-center transform hover:scale-105 transition-transform"
-                      alt=""
+                      alt="profile"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "https://res.cloudinary.com/dzghnopbp/image/upload/v1733771941/upwhtghoewy80megt28z.jpg";
+                      }}
                     />
                   </div>
                 </NavLink>
