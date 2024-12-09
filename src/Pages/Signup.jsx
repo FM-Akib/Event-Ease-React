@@ -9,6 +9,8 @@ import { FaBuildingWheat } from "react-icons/fa6";
 
 import bg from '../assets/pattern.jpg'
 import signupImg from '../assets/signup.jpg'
+import { FaGithub } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
 
 
 const notify_Signup = () => toast.success('Signup Successful!')
@@ -22,7 +24,7 @@ const Signup = () => {
   const [loading,setLoading] = useState(false);
 
 
-  const {CreateUserEmailPassword,SigninWithGoogle} = useContext(AuthContext); 
+  const {CreateUserEmailPassword,SigninWithGoogle,SigninWithGithub} = useContext(AuthContext); 
 
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
@@ -30,6 +32,37 @@ const Signup = () => {
 
   const handleGoogleSignUp= ()=>{
     SigninWithGoogle()
+    .then((result) => {
+        const Loggeduser = result.user;
+            console.log(Loggeduser)
+            // setLoading(true);
+
+            const user ={
+                name: result.user?.displayName,
+                email: result.user?.email,
+                image: result.user?.photoURL,
+                type: "user",
+                mybookings:[]
+            }
+
+
+            axiosPublic.post('/users',user)
+            .then((result) => {
+                if(result.insertedId>0){
+                    // setLoading(false);
+                    notify_Signup() 
+                    navigate('/',{replace: true})
+                }
+               
+            })
+            
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }
+  const handleGithubSignUp= ()=>{
+    SigninWithGithub()
     .then((result) => {
         const Loggeduser = result.user;
             console.log(Loggeduser)
@@ -193,14 +226,20 @@ const Signup = () => {
             <p className="px-3 text-sm text-gray-600">Signup another way</p>
             <div className="flex-1 h-px sm:w-16 bg-gray-200"></div>
             </div>
-            <div className="flex justify-center space-x-4">
+            <div className="grid grid-cols-3 gap-3 justify-center space-x-4 ">
             
-            <button onClick={handleGoogleSignUp} aria-label="Log in with Google" className=" flex-1 px-3 py-1 rounded-lg border-2 flex items-center justify-center">
-            <svg width="30px" height="30px" viewBox="0 0 32 32" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"><path d="M23.75,16A7.7446,7.7446,0,0,1,8.7177,18.6259L4.2849,22.1721A13.244,13.244,0,0,0,29.25,16" fill="#00ac47"/><path d="M23.75,16a7.7387,7.7387,0,0,1-3.2516,6.2987l4.3824,3.5059A13.2042,13.2042,0,0,0,29.25,16" fill="#4285f4"/><path d="M8.25,16a7.698,7.698,0,0,1,.4677-2.6259L4.2849,9.8279a13.177,13.177,0,0,0,0,12.3442l4.4328-3.5462A7.698,7.698,0,0,1,8.25,16Z" fill="#ffba00"/><polygon fill="#2ab2db" points="8.718 13.374 8.718 13.374 8.718 13.374 8.718 13.374"/><path d="M16,8.25a7.699,7.699,0,0,1,4.558,1.4958l4.06-3.7893A13.2152,13.2152,0,0,0,4.2849,9.8279l4.4328,3.5462A7.756,7.756,0,0,1,16,8.25Z" fill="#ea4435"/><polygon fill="#2ab2db" points="8.718 18.626 8.718 18.626 8.718 18.626 8.718 18.626"/><path d="M29.25,15v1L27,19.5H16.5V14H28.25A1,1,0,0,1,29.25,15Z" fill="#4285f4"/></svg>
-            <p className="text-left ml-4 leading-tight text-sm	">Sign up with google</p>
+            <div className="flex items-center justify-center gap-3 col-span-1 ">
+            <button onClick={handleGoogleSignUp} aria-label="Log in with Google" className=" px-2 py-2 rounded-lg border-2 flex items-center justify-center">
+            <FcGoogle className='text-3xl'/>
+            {/* <p className="text-left ml-4 leading-tight text-sm	">Sign up with google</p> */}
             </button>
+            <button onClick={handleGithubSignUp} aria-label="Log in with Google" className=" px-2 py-2 rounded-lg border-2 flex items-center justify-center">
+            <FaGithub className='text-3xl'/>
+            {/* <p className="text-left ml-4 leading-tight text-sm	">Sign up with google</p> */}
+            </button>
+            </div>
             
-            <Link to="/signuphall" className="flex-1 px-3 py-1 rounded-lg border-2">
+            <Link to="/signuphall" className="col-span-2 w-full  px-3 py-1 rounded-lg border-2 flex items-center justify-center">
             <button  className=" flex items-center justify-center">
             <FaBuildingWheat className='text-3xl'/>
             <p className="text-left ml-4 text-sm leading-tight	">Register your hall</p>

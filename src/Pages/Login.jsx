@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { SiSimplelogin } from 'react-icons/si';
 
 import bg from '../assets/pattern.jpg'
+import { FaGithub } from 'react-icons/fa';
 
 
 const notify = () => toast.success('Login Successful!')
@@ -17,10 +18,22 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/';
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { SigninWithEmailPassword, SigninWithGoogle } = useContext(AuthContext);
+    const { SigninWithEmailPassword, SigninWithGoogle, SigninWithGithub } = useContext(AuthContext);
 
     const handleGoogleSignin = () => {
         SigninWithGoogle()
+            .then((result) => {
+                const Loggeduser = result.user;
+                console.log(Loggeduser);
+                notify();
+                navigate(from, { replace: true });
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    }
+    const handleGithubSignin = () => {
+        SigninWithGithub()
             .then((result) => {
                 const Loggeduser = result.user;
                 console.log(Loggeduser);
@@ -55,11 +68,18 @@ const Login = () => {
                                 <div className="mt-12 rounded-3xl border bg-white/60 bg-cover -mx-6 sm:-mx-10 p-8 sm:p-10">
                                     <h3 className="text-2xl font-semibold text-gray-700 text-center flex items-center justify-center gap-2"><SiSimplelogin className="text-3xl" />
                                     Login to your account</h3>
-                                    <div className="mt-12 flex flex-wrap">
+                                    <div className="mt-12 flex flex-wrap gap-4">
                                         <button onClick={handleGoogleSignin} className="w-full h-11 rounded-xl border border-gray-300/75 bg-white px-6 transition active:bg-gray-50">
                                             <div className="w-full mx-auto flex items-center justify-center space-x-4">
                                                 <span className="w-max text-sm font-semibold tracking-wide text-cyan-700 flex items-center justify-center">
                                                     <FcGoogle className='mr-1 text-2xl' /> Sign in with Google
+                                                </span>
+                                            </div>
+                                        </button>
+                                        <button onClick={handleGithubSignin} className="w-full h-11 rounded-xl border border-gray-300/75 bg-white px-6 transition active:bg-gray-50">
+                                            <div className="w-full mx-auto flex items-center justify-center space-x-4">
+                                                <span className="w-max text-sm font-semibold tracking-wide text-cyan-700 flex items-center justify-center">
+                                                    <FaGithub className='mr-1 text-2xl' /> Sign in with Google
                                                 </span>
                                             </div>
                                         </button>

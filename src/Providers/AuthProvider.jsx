@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import {  signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { app } from "../firebase/firebase.config";
@@ -10,6 +10,7 @@ const AuthProvider = ({children}) => {
     const [loading , setLoading] = useState(true);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
+    const Githubprovider = new GithubAuthProvider();
     const axiosPublic = useAxiosPublic()
 
 
@@ -24,6 +25,10 @@ const AuthProvider = ({children}) => {
     const SigninWithGoogle = ()=>{
         setLoading(true);
         return signInWithPopup(auth, provider)
+    }
+    const SigninWithGithub = ()=>{
+        setLoading(true);
+        return signInWithPopup(auth, Githubprovider)
     }
 
     const logOut = ()=>{
@@ -63,6 +68,7 @@ const AuthProvider = ({children}) => {
         CreateUserEmailPassword,
         SigninWithEmailPassword,
         SigninWithGoogle,
+        SigninWithGithub,
         logOut
     }
     return (
